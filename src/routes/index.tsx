@@ -48,6 +48,8 @@ import serviceAi from "@/assets/service/service-ai.jpeg";
 import serviceFacilitation from "@/assets/service/service-facilitation.jpeg";
 import serviceOffsite from "@/assets/service/service-offsite.jpeg";
 import serviceKeynote from "@/assets/service/service-keynote.jpeg";
+import heroBg from "@/assets/minimal-bg.png";
+import heroBg2 from "@/assets/minimal-bg2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -299,7 +301,10 @@ function HomePage() {
       </section>
 
       {/* INDUSTRIES */}
-      <section className="section">
+      <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
         <div className="container-px mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
@@ -352,7 +357,10 @@ function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section className="section">
+      <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
         <div className="container-px mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
@@ -416,7 +424,10 @@ function HomePage() {
       </section>
 
       {/* CLIENT LOGOS — sliding carousel, one row, manual + arrow navigation */}
-      <section className="section">
+      <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
         <div className="container-px mx-auto max-w-7xl">
           <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Trusted by L&amp;D and business leaders across industries
@@ -511,7 +522,10 @@ function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="section">
+      <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
         <div className="container-px mx-auto max-w-6xl">
           <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 shadow-elegant">
             <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/30 blur-3xl" />

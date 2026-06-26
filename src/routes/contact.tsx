@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/bg-img1.png";
-
+import heroBg2 from "@/assets/minimal-bg.png";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -108,7 +108,10 @@ function ContactPage() {
         </div>
       </section>
 
-      <section className="section pt-10">
+     <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
         <div className="container-px mx-auto max-w-7xl grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7">
             <div className="card-elegant p-8 md:p-10">

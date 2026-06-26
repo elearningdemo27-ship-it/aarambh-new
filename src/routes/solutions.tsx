@@ -13,6 +13,7 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/bg-img1.png";
+import heroBg2 from "@/assets/minimal-bg.png";
 
 // Service section photos from src/assets/service/ — same set used on the homepage.
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
@@ -155,7 +156,10 @@ function SolutionsPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
         <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {solutions.map(({ id, icon: Icon, image, title, short }) => (
             <a

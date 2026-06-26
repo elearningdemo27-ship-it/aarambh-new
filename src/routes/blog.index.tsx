@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/bg-img1.png";
-
+import heroBg2 from "@/assets/minimal-bg2.png";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
@@ -75,7 +75,10 @@ function BlogListPage() {
         </div>
       </section>
 
-      <section className="section pt-10">
+      <section 
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
         <div className="container-px mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
             <div className="relative max-w-md w-full">

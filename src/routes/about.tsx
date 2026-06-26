@@ -4,6 +4,8 @@ import { Award, Compass, Sparkles, Users2, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/bg-img1.png";
+import heroBg2 from "@/assets/minimal-bg2.png";
+import heroBg1 from "@/assets/minimal-bg.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -85,7 +87,9 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section 
+              className="section "
+            >
         <div className="container-px mx-auto max-w-7xl grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
             <span className="eyebrow">Who we are</span>
@@ -133,7 +137,10 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section
+        className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
         <div className="container-px mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <span className="eyebrow">Founders</span>
@@ -190,7 +197,10 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+     <section
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg1})` }}
+      >
         <div className="container-px mx-auto max-w-6xl">
           <div className="rounded-3xl bg-primary text-primary-foreground p-10 md:p-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-elegant">
             <div>
