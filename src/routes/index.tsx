@@ -25,7 +25,21 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import partnersAsset from "@/assets/partners-grid.png.asset.json";
+
+// Individual partner/client logos from src/assets/partners/
+import partnerLogo1 from "@/assets/partners/Asset 1@4x-8.png";
+import partnerLogo2 from "@/assets/partners/Asset 2@4x-8.png";
+import partnerLogo3 from "@/assets/partners/Asset 3@4x-8.png";
+import partnerLogo4 from "@/assets/partners/Asset 4@4x-8.png";
+import partnerLogo5 from "@/assets/partners/Asset 5@4x-8.png";
+import partnerLogo6 from "@/assets/partners/Asset 6@4x-8.png";
+import partnerLogo7 from "@/assets/partners/Asset 7@4x-8.png";
+import partnerLogo8 from "@/assets/partners/Asset 8@4x-8.png";
+import partnerLogo9 from "@/assets/partners/Asset 9@4x-8.png";
+import partnerLogo10 from "@/assets/partners/Asset 10@4x-8.png";
+import partnerLogo11 from "@/assets/partners/Asset 11@4x-8.png";
+import partnerLogo12 from "@/assets/partners/Asset 12@4x-8.png";
+import partnerLogo13 from "@/assets/partners/Asset 13@4x-8.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -123,6 +137,23 @@ const impact = [
   { value: "Multi", label: "Industries served in India" },
 ];
 
+// Partner/client logos shown in the sliding carousel below the impact numbers.
+const partnerLogos = [
+  { src: partnerLogo1, name: "Partner 1" },
+  { src: partnerLogo2, name: "Partner 2" },
+  { src: partnerLogo3, name: "Partner 3" },
+  { src: partnerLogo4, name: "Partner 4" },
+  { src: partnerLogo5, name: "Partner 5" },
+  { src: partnerLogo6, name: "Partner 6" },
+  { src: partnerLogo7, name: "Partner 7" },
+  { src: partnerLogo8, name: "Partner 8" },
+  { src: partnerLogo9, name: "Partner 9" },
+  { src: partnerLogo10, name: "Partner 10" },
+  { src: partnerLogo11, name: "Partner 11" },
+  { src: partnerLogo12, name: "Partner 12" },
+  { src: partnerLogo13, name: "Partner 13" },
+];
+
 const testimonials = [
   {
     quote:
@@ -146,8 +177,12 @@ const testimonials = [
 
 const heroSlides = [hero1, hero2, hero3];
 
+// How many partner logos are visible at once in the carousel, per breakpoint.
+const PARTNERS_PER_PAGE = { base: 2, sm: 3, md: 4, lg: 5 };
+
 function HomePage() {
   const testimonialRef = useRef<HTMLDivElement>(null);
+  const partnersRef = useRef<HTMLDivElement>(null);
   const [activeHero, setActiveHero] = useState(0);
 
   useEffect(() => {
@@ -155,10 +190,7 @@ function HomePage() {
       setActiveHero((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
 
-
     return () => clearInterval(timer);
-
-
   }, []);
 
   const scrollTestimonials = (direction: "left" | "right") => {
@@ -172,264 +204,307 @@ function HomePage() {
     });
   };
 
-  return (<SiteLayout>
-    {/* HERO */} <section className="hero-bg bg-cover bg-center bg-no-repeat relative overflow-hidden">
-      {heroSlides.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
-            }`}
-          style={{ backgroundImage: `url(${image})` }}
-        />
-      ))}
+  // Slides the partner-logo row by roughly one "page" of logos at a time,
+  // but still allows free dragging/scrolling by the user in between clicks.
+  const scrollPartners = (direction: "left" | "right") => {
+    const el = partnersRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9;
+    el.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
 
-      <div className="relative z-10 container-px mx-auto max-w-7xl pt-20 pb-20 md:pt-28 md:pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl"
-        >
-          <span className="eyebrow">Learning & Development Consulting</span>
-          <h1 className="display-h1 mt-5 text-foreground">
-            Learning That Builds <em className="text-primary not-italic">Capability</em>—Not
-            Just Completion
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            We help organisations design learning solutions that go beyond content creation.
-            Through instructional design, digital learning, facilitated workshops, experiential
-            programs and AI-enabled learning workflows, we build capability that improves
-            workplace performance.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg">
+  return (
+    <SiteLayout>
+      {/* HERO */}
+      <section className="hero-bg bg-cover bg-center bg-no-repeat relative overflow-hidden">
+        {heroSlides.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
+              }`}
+            style={{ backgroundImage: `url(${image})` }}
+          />
+        ))}
+
+        <div className="relative z-10 container-px mx-auto max-w-7xl pt-20 pb-20 md:pt-28 md:pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-3xl"
+          >
+            <span className="eyebrow">Learning & Development Consulting</span>
+            <h1 className="display-h1 mt-5 text-foreground">
+              Learning That Builds <em className="text-primary not-italic">Capability</em>—Not
+              Just Completion
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              We help organisations design learning solutions that go beyond content creation.
+              Through instructional design, digital learning, facilitated workshops, experiential
+              programs and AI-enabled learning workflows, we build capability that improves
+              workplace performance.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/solutions">
+                  Explore Our Solutions <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/contact">Discuss Your Learning Need</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-background">
+        <div className="container-px mx-auto max-w-7xl py-6">
+          <div className="grid gap-5 md:grid-cols-5 items-center">
+            <div className="flex items-center gap-2 font-semibold text-primary">
+              <Sparkles className="h-4 w-4" />
+              <span>Why teams choose Aarambh</span>
+            </div>
+
+            {[
+              "Practitioner-led learning design",
+              "Deep BFSI, sales & leadership expertise",
+              "Digital, AI-enabled & experiential delivery",
+              "Measurable workplace impact",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3 text-sm text-foreground">
+                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INDUSTRIES */}
+      <section className="section">
+        <div className="container-px mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <span className="eyebrow">Industries we serve</span>
+              <h2 className="display-h2 mt-3 max-w-2xl">
+                Learning designed for the realities of your industry
+              </h2>
+            </div>
+            <p className="md:max-w-sm text-muted-foreground">
+              From BFSI to manufacturing, our programs are rooted in domain context — not generic templates.
+            </p>
+          </div>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {industries.map(({ icon: Icon, label }) => (
+              <div key={label} className="card-elegant p-6 flex flex-col items-center text-center">
+                <Icon className="h-7 w-7 text-primary" />
+                <div className="mt-3 text-sm font-medium">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DIFFERENTIATORS */}
+      <section className="sand-bg">
+        <div className="container-px mx-auto max-w-7xl section">
+          <div className="max-w-3xl">
+            <span className="eyebrow">What makes us different</span>
+            <h2 className="display-h2 mt-3">
+              Practitioner-led learning. Designed for real workplace impact.
+            </h2>
+          </div>
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+            {differentiators.map((d, i) => (
+              <motion.div
+                key={d.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="card-elegant p-6"
+              >
+                <div className="text-3xl font-display text-primary/40">0{i + 1}</div>
+                <div className="mt-3 font-semibold">{d.title}</div>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="section">
+        <div className="container-px mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <span className="eyebrow">Our solutions</span>
+              <h2 className="display-h2 mt-3 max-w-2xl">
+                A full L&amp;D partner across strategy, design and delivery
+              </h2>
+            </div>
+            <Button asChild variant="outline">
               <Link to="/solutions">
-                Explore Our Solutions <ArrowRight className="ml-2 h-4 w-4" />
+                See all solutions <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link to="/contact">Discuss Your Learning Need</Link>
-            </Button>
           </div>
-        </motion.div>
-      </div>
-    </section>
-
-    <section className="border-y border-border bg-background">
-      <div className="container-px mx-auto max-w-7xl py-6">
-        <div className="grid gap-5 md:grid-cols-5 items-center">
-          <div className="flex items-center gap-2 font-semibold text-primary">
-            <Sparkles className="h-4 w-4" />
-            <span>Why teams choose Aarambh</span>
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map(({ icon: Icon, title, desc }) => (
+              <Link key={title} to="/solutions" className="card-elegant p-7 group block">
+                <div className="h-12 w-12 rounded-xl bg-primary-soft text-primary flex items-center justify-center">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 text-xl font-display">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition">
+                  Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
+                </div>
+              </Link>
+            ))}
           </div>
-
-          {[
-            "Practitioner-led learning design",
-            "Deep BFSI, sales & leadership expertise",
-            "Digital, AI-enabled & experiential delivery",
-            "Measurable workplace impact",
-          ].map((item) => (
-            <div key={item} className="flex items-start gap-3 text-sm text-foreground">
-              <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-              <span>{item}</span>
-            </div>
-          ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* INDUSTRIES */}
-    <section className="section">
-      <div className="container-px mx-auto max-w-7xl">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <span className="eyebrow">Industries we serve</span>
-            <h2 className="display-h2 mt-3 max-w-2xl">
-              Learning designed for the realities of your industry
-            </h2>
+      {/* IMPACT NUMBERS */}
+      <section className="bg-[color-mix(in_oklab,var(--primary)_96%,white)] text-primary-foreground">
+        <div className="container-px mx-auto max-w-7xl py-20">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+            {impact.map((s) => (
+              <div key={s.label}>
+                <div className="font-display text-4xl md:text-5xl">{s.value}</div>
+                <div className="mt-2 text-xs uppercase tracking-widest text-primary-foreground/70">
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
-          <p className="md:max-w-sm text-muted-foreground">
-            From BFSI to manufacturing, our programs are rooted in domain context — not generic templates.
+        </div>
+      </section>
+
+      {/* CLIENT LOGOS — sliding carousel, one row, manual + arrow navigation */}
+      <section className="section">
+        <div className="container-px mx-auto max-w-7xl">
+          <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
+            Trusted by L&amp;D and business leaders across industries
           </p>
-        </div>
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {industries.map(({ icon: Icon, label }) => (
-            <div key={label} className="card-elegant p-6 flex flex-col items-center text-center">
-              <Icon className="h-7 w-7 text-primary" />
-              <div className="mt-3 text-sm font-medium">{label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
-    {/* DIFFERENTIATORS */}
-    <section className="sand-bg">
-      <div className="container-px mx-auto max-w-7xl section">
-        <div className="max-w-3xl">
-          <span className="eyebrow">What makes us different</span>
-          <h2 className="display-h2 mt-3">
-            Practitioner-led learning. Designed for real workplace impact.
-          </h2>
-        </div>
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-          {differentiators.map((d, i) => (
-            <motion.div
-              key={d.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="card-elegant p-6"
-            >
-              <div className="text-3xl font-display text-primary/40">0{i + 1}</div>
-              <div className="mt-3 font-semibold">{d.title}</div>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.body}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* SERVICES */}
-    <section className="section">
-      <div className="container-px mx-auto max-w-7xl">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <span className="eyebrow">Our solutions</span>
-            <h2 className="display-h2 mt-3 max-w-2xl">
-              A full L&amp;D partner across strategy, design and delivery
-            </h2>
-          </div>
-          <Button asChild variant="outline">
-            <Link to="/solutions">
-              See all solutions <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc }) => (
-            <Link key={title} to="/solutions" className="card-elegant p-7 group block">
-              <div className="h-12 w-12 rounded-xl bg-primary-soft text-primary flex items-center justify-center">
-                <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 text-xl font-display">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition">
-                Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* IMPACT NUMBERS */}
-    <section className="bg-[color-mix(in_oklab,var(--primary)_96%,white)] text-primary-foreground">
-      <div className="container-px mx-auto max-w-7xl py-20">
-        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
-          {impact.map((s) => (
-            <div key={s.label}>
-              <div className="font-display text-4xl md:text-5xl">{s.value}</div>
-              <div className="mt-2 text-xs uppercase tracking-widest text-primary-foreground/70">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* CLIENT LOGOS */}
-    <section className="section">
-      <div className="container-px mx-auto max-w-7xl">
-        <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          Trusted by L&amp;D and business leaders across industries
-        </p>
-        <div className="mt-10">
-          <img
-            src={partnersAsset.url}
-            alt="Our valued clients and partners including eBay, SBI Life, NSE Academy, IndiaFirst, BIBA, Ericsson, MFIN, Chandigarh University and more"
-            className="w-full max-w-5xl mx-auto rounded-xl"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-
-    {/* TESTIMONIALS */}
-    <section className="sand-bg">
-      <div className="container-px mx-auto max-w-7xl section">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div className="max-w-2xl">
-            <span className="eyebrow">In their words</span>
-            <h2 className="display-h2 mt-3">What partners say about working with us</h2>
-          </div>
-          <div className="flex gap-2">
+          <div className="mt-10 relative flex items-center gap-3">
             <button
-              onClick={() => scrollTestimonials("left")}
-              className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
-              aria-label="Previous testimonial"
+              onClick={() => scrollPartners("left")}
+              className="hidden sm:flex h-10 w-10 shrink-0 rounded-full border border-border bg-background items-center justify-center hover:bg-muted transition"
+              aria-label="Show previous partners"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
+
+            <div
+              ref={partnersRef}
+              className="flex-1 flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-6"
+            >
+              {partnerLogos.map((logo) => (
+                <div
+                  key={logo.name}
+                  data-carousel-card
+                  className="group shrink-0 snap-start flex items-center justify-center h-28 w-56 sm:w-64 px-4"
+                >
+                  <img
+                    src={logo.src}
+                    alt={logo.name}
+                    loading="lazy"
+                    className="max-h-20 max-w-full object-contain transition-all duration-300 ease-out group-hover:scale-110"
+                  />
+                </div>
+              ))}
+            </div>
+
             <button
-              onClick={() => scrollTestimonials("right")}
-              className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
-              aria-label="Next testimonial"
+              onClick={() => scrollPartners("right")}
+              className="hidden sm:flex h-10 w-10 shrink-0 rounded-full border border-border bg-background items-center justify-center hover:bg-muted transition"
+              aria-label="Show next partners"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>
-        <div
-          ref={testimonialRef}
-          className="carousel-track mt-10 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-        >
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              data-carousel-card
-              className="card-elegant p-7 flex-shrink-0 snap-start w-[85vw] md:w-[45vw] lg:w-[32vw]"
-            >
-              <Quote className="h-7 w-7 text-primary/40" />
-              <p className="mt-4 text-foreground/90 leading-relaxed">{t.quote}</p>
-              <div className="mt-6 pt-4 border-t border-border">
-                <div className="font-semibold">{t.name}</div>
-                <div className="text-sm text-muted-foreground">{t.org}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
 
-    {/* CTA */}
-    <section className="section">
-      <div className="container-px mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 shadow-elegant">
-          <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/30 blur-3xl" />
-          <div className="relative grid md:grid-cols-3 gap-8 items-center">
-            <div className="md:col-span-2">
-              <h3 className="display-h2">Have a learning need? Let's build it together.</h3>
-              <p className="mt-4 text-primary-foreground/85 max-w-2xl">
-                Whether you're designing a new capability journey, modernising existing
-                content, or planning a high-impact offsite — we'd love to hear what you're
-                working on.
-              </p>
+      {/* TESTIMONIALS */}
+      <section className="sand-bg">
+        <div className="container-px mx-auto max-w-7xl section">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="eyebrow">In their words</span>
+              <h2 className="display-h2 mt-3">What partners say about working with us</h2>
             </div>
-            <div className="md:text-right">
-              <Button asChild size="lg" variant="secondary">
-                <Link to="/contact">
-                  Discuss Your Learning Need <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollTestimonials("left")}
+                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => scrollTestimonials("right")}
+                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+          <div
+            ref={testimonialRef}
+            className="carousel-track mt-10 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+          >
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                data-carousel-card
+                className="card-elegant p-7 flex-shrink-0 snap-start w-[85vw] md:w-[45vw] lg:w-[32vw]"
+              >
+                <Quote className="h-7 w-7 text-primary/40" />
+                <p className="mt-4 text-foreground/90 leading-relaxed">{t.quote}</p>
+                <div className="mt-6 pt-4 border-t border-border">
+                  <div className="font-semibold">{t.name}</div>
+                  <div className="text-sm text-muted-foreground">{t.org}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section">
+        <div className="container-px mx-auto max-w-6xl">
+          <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 shadow-elegant">
+            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/30 blur-3xl" />
+            <div className="relative grid md:grid-cols-3 gap-8 items-center">
+              <div className="md:col-span-2">
+                <h3 className="display-h2">Have a learning need? Let's build it together.</h3>
+                <p className="mt-4 text-primary-foreground/85 max-w-2xl">
+                  Whether you're designing a new capability journey, modernising existing
+                  content, or planning a high-impact offsite — we'd love to hear what you're
+                  working on.
+                </p>
+              </div>
+              <div className="md:text-right">
+                <Button asChild size="lg" variant="secondary">
+                  <Link to="/contact">
+                    Discuss Your Learning Need <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </SiteLayout>
-
+      </section>
+    </SiteLayout>
   );
 }
