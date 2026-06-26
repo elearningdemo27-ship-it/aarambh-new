@@ -41,6 +41,14 @@ import partnerLogo11 from "@/assets/partners/Asset 11@4x-8.png";
 import partnerLogo12 from "@/assets/partners/Asset 12@4x-8.png";
 import partnerLogo13 from "@/assets/partners/Asset 13@4x-8.png";
 
+// Service section photos from src/assets/service/
+import serviceStrategy from "@/assets/service/service-strategy.jpeg";
+import serviceDesign from "@/assets/service/service-design.jpeg";
+import serviceAi from "@/assets/service/service-ai.jpeg";
+import serviceFacilitation from "@/assets/service/service-facilitation.jpeg";
+import serviceOffsite from "@/assets/service/service-offsite.jpeg";
+import serviceKeynote from "@/assets/service/service-keynote.jpeg";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -98,31 +106,37 @@ const differentiators = [
 const services = [
   {
     icon: Compass,
+    image: serviceStrategy,
     title: "Learning Strategy & Consulting",
     desc: "TNA, capability mapping, learning journeys and impact planning.",
   },
   {
     icon: BookOpen,
+    image: serviceDesign,
     title: "Instructional Design & Content",
     desc: "ILT, eLearning, blended programs, SCORM, microlearning and more.",
   },
   {
     icon: Sparkles,
+    image: serviceAi,
     title: "AI-Enabled Learning",
     desc: "AI job aids, prompt libraries, AI literacy and skill practice.",
   },
   {
     icon: Brain,
+    image: serviceFacilitation,
     title: "Training Delivery & Facilitation",
     desc: "BFSI, soft skills, leadership, sales, TTT and managerial programs.",
   },
   {
     icon: Mountain,
+    image: serviceOffsite,
     title: "Offsites & Experiential",
     desc: "Leadership retreats, team alignment, outbound and simulations.",
   },
   {
     icon: Mic2,
+    image: serviceKeynote,
     title: "Keynotes & Motivational",
     desc: "Leadership, resilience, ownership and performance mindset talks.",
   },
@@ -354,15 +368,30 @@ function HomePage() {
             </Button>
           </div>
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(({ icon: Icon, title, desc }) => (
-              <Link key={title} to="/solutions" className="card-elegant p-7 group block">
-                <div className="h-12 w-12 rounded-xl bg-primary-soft text-primary flex items-center justify-center">
-                  <Icon className="h-6 w-6" />
+            {services.map(({ icon: Icon, image, title, desc }) => (
+              <Link
+                key={title}
+                to="/solutions"
+                className="card-elegant overflow-hidden group block"
+              >
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={image}
+                    alt={title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
+                  <div className="absolute bottom-3 left-3 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center shadow-elegant">
+                    <Icon className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="mt-5 text-xl font-display">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition">
-                  Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
+                <div className="p-7">
+                  <h3 className="text-xl font-display">{title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                  <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-70 group-hover:opacity-100 transition">
+                    Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
+                  </div>
                 </div>
               </Link>
             ))}
@@ -410,13 +439,14 @@ function HomePage() {
                 <div
                   key={logo.name}
                   data-carousel-card
-                  className="group shrink-0 snap-start flex items-center justify-center h-28 w-56 sm:w-64 px-4"
+                  className="group shrink-0 snap-start flex items-center justify-center h-20 w-36 sm:w-40 px-4"
+                  style={{ perspective: "600px" }}
                 >
                   <img
                     src={logo.src}
                     alt={logo.name}
                     loading="lazy"
-                    className="max-h-20 max-w-full object-contain transition-all duration-300 ease-out group-hover:scale-110"
+                    className="max-h-12 max-w-full object-contain transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.15] group-hover:-translate-y-1 group-hover:drop-shadow-[0_12px_16px_rgba(0,0,0,0.18)]"
                   />
                 </div>
               ))}
