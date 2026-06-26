@@ -5,10 +5,10 @@ import heroBg from "@/assets/bg-dark.png";
 
 export function Footer() {
   return (
-    <footer className="mt-2 border-t border-border bg-[color-mix(in_oklab,var(--primary)_4%,var(--background))]">
+    <footer className="mt-2 border-t border-border bg-[oklch(0.16_0.02_270)]">
 
-    <section 
-        className=" hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+    <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[oklch(0.16_0.02_270)]"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
       <div className="container-px mx-auto max-w-7xl py-16 grid gap-12 md:grid-cols-4">
@@ -33,7 +33,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold tracking-wide uppercase text-foreground">Explore</h4>
+          <h4 className="text-sm font-semibold tracking-wide uppercase text-white">Explore</h4>
           <ul className="mt-4 space-y-2 text-sm">
             {[
               ["/about", "About"],
@@ -52,7 +52,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold tracking-wide uppercase text-foreground">Solutions</h4>
+          <h4 className="text-sm font-semibold tracking-wide uppercase text-white">Solutions</h4>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
             <li>Learning Strategy &amp; Consulting</li>
             <li>Instructional Design</li>
@@ -64,7 +64,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border">
+      <div className="border-t border-white/10">
         <div className="container-px mx-auto max-w-7xl py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/75">
           <p>© {new Date().getFullYear()} Aarambh Resource Management Solutions. All rights reserved.</p>
           <div className="flex items-center gap-4">
