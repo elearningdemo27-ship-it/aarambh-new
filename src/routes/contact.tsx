@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
+import heroBg from "@/assets/bg-img1.png";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -91,7 +92,10 @@ function ContactPage() {
 
   return (
     <SiteLayout>
-      <section className="hero-bg">
+      <section
+        className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
         <div className="container-px mx-auto max-w-7xl py-20 md:py-24">
           <span className="eyebrow">Contact</span>
           <h1 className="display-h1 mt-5 max-w-3xl">

@@ -6,6 +6,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import heroBg from "@/assets/bg-img1.png";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -59,7 +60,10 @@ function BlogListPage() {
 
   return (
     <SiteLayout>
-      <section className="hero-bg">
+      <section
+        className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
         <div className="container-px mx-auto max-w-7xl py-20 md:py-24">
           <span className="eyebrow">Blog</span>
           <h1 className="display-h1 mt-5 max-w-3xl">

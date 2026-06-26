@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Award, Compass, Sparkles, Users2, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import heroBg from "@/assets/bg-img1.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -65,8 +66,11 @@ const founders = [
 function AboutPage() {
   return (
     <SiteLayout>
-      <section className="hero-bg">
-        <div className="container-px mx-auto max-w-7xl py-20 md:py-28 grid lg:grid-cols-12 gap-10">
+      <section
+        className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="container-px relative mx-auto max-w-7xl py-20 md:py-28 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-8">
             <span className="eyebrow">About Aarambh</span>
             <h1 className="display-h1 mt-5">
