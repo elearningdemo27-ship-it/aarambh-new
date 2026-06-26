@@ -239,9 +239,9 @@ function HomePage() {
         {heroSlides.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
               }`}
-            style={{ backgroundImage: `url(${image})` }}
+            style={{ backgroundImage: `url(${image})`, backgroundPosition: "center top" }}
           />
         ))}
 
@@ -301,7 +301,7 @@ function HomePage() {
       </section>
 
       {/* INDUSTRIES */}
-      <section 
+      <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
@@ -357,7 +357,7 @@ function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section 
+      <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg2})` }}
       >
@@ -424,7 +424,7 @@ function HomePage() {
       </section>
 
       {/* CLIENT LOGOS — sliding carousel, one row, manual + arrow navigation */}
-      <section 
+      <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
@@ -522,7 +522,7 @@ function HomePage() {
       </section>
 
       {/* CTA */}
-      <section 
+      <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg2})` }}
       >
