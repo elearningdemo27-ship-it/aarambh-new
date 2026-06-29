@@ -1,9 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import hero1 from "@/assets/hero/hero-1.png";
 import hero2 from "@/assets/hero/hero-2.png";
 import hero3 from "@/assets/hero/hero-3.png";
+import hero4 from "@/assets/hero/hero-4.png";
+import hero5 from "@/assets/hero/hero-5.png";
+import hero6 from "@/assets/hero/hero-6.png";
 import {
   ArrowRight,
   Building2,
@@ -22,6 +25,7 @@ import {
   Quote,
   ChevronLeft,
   ChevronRight,
+  Users2,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
@@ -50,6 +54,7 @@ import serviceOffsite from "@/assets/service/service-offsite.jpeg";
 import serviceKeynote from "@/assets/service/service-keynote.jpeg";
 import heroBg from "@/assets/minimal-bg.png";
 import heroBg2 from "@/assets/minimal-bg2.png";
+import impactBg from "@/assets/bg-compnies-growth.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -145,12 +150,13 @@ const services = [
 ] as const;
 
 const impact = [
-  { value: "30+", label: "Years of L&D experience" },
-  { value: "8+", label: "Years in digital learning" },
+  { value: "30+", label: "Founder's years in L&D & capability-building" },
+  { value: "15+", label: "Years in digital learning & eLearning" },
   { value: "300+", label: "Workshops delivered" },
-  { value: "13L+", label: "Learner man-hours impacted" },
+  { value: "1.3L+", label: "Learner man-hours impacted" },
   { value: "250+", label: "eLearning hours created" },
-  { value: "Multi", label: "Industries served in India" },
+  { value: "Since 2019", label: "ARMS in practice" },
+  { value: "Multi", label: "Industries served across India" },
 ];
 
 // Partner/client logos shown in the sliding carousel below the impact numbers.
@@ -172,31 +178,101 @@ const partnerLogos = [
 
 const testimonials = [
   {
+    tag: "Behavioural Skills Workshop",
     quote:
-      "Aarambh translated dense compliance content into a learning experience our teams actually engaged with. The shift in completion was matched by a shift in conversation.",
-    name: "L&D Head",
-    org: "Leading Private Bank",
+      "ARMS delivered a highly impactful 3-day Behavioural Skills Workshop for our managerial cadre. The program was engaging, practical, and deeply relevant to workplace realities.",
+    name: "Amitabh",
+    role: "Managing Director",
+    org: "Creative Museum Designer, Kolkata",
+    image: "", // add image here later
   },
   {
+    tag: "Leadership Development",
     quote:
-      "Their facilitators bring rare maturity. The offsite moved from being an event to becoming a real reset for the leadership team.",
-    name: "Head of HR",
-    org: "Global Manufacturing Major",
+      "The facilitation brought together strong energy, meaningful reflection, and actionable learning. The workshop experience was powerful and memorable for our team.",
+    name: "Client Name",
+    role: "Head of HR",
+    org: "Manufacturing Organisation",
+    image: "",
   },
   {
+    tag: "Learning Design",
     quote:
-      "Practitioners who understand the front line. Our sales managers walked out with tools they were using the very next week.",
-    name: "Sales Capability Lead",
-    org: "BFSI",
+      "Aarambh helped us convert complex content into a clean and learner-friendly experience. Their approach was structured, practical, and aligned to our business needs.",
+    name: "Client Name",
+    role: "L&D Lead",
+    org: "BFSI Organisation",
+    image: "",
   },
 ];
 
-const heroSlides = [hero1, hero2, hero3];
+// Each hero slide pairs its own background photo with its own headline, copy and CTA label.
+// `title` uses **double asterisks** around any word/phrase that should render in the primary
+// theme color — add or edit slides here without touching the render logic below.
+const heroSlides = [
+  {
+    image: hero1,
+    eyebrow: "Learning & Development Consulting",
+    title: "Content That **Teaches.** Training That **Transforms.**",
+    desc: "We design impactful digital and ILT learning content and deliver engaging training experiences across BFSI, soft skills, leadership, and outbound learning.",
+    primaryCta: "Explore Our Services",
+  },
+  {
+    image: hero2,
+    eyebrow: "Learning & Development Consulting",
+    title: "From **Learning Design** to **Learning Delivery**",
+    desc: "End-to-end solutions for organisations looking for well-structured content and powerful facilitator-led learning interventions.",
+    primaryCta: "Explore Our Solutions",
+  },
+  {
+    image: hero3,
+    eyebrow: "Learning & Development Consulting",
+    title: "Designed for **Learners.** Delivered for **Impact.**",
+    desc: "Whether it is BFSI domain training, leadership development, soft skills, or outbound programs, we bring content and delivery together with purpose.",
+    primaryCta: "Explore Our Solutions",
+  },
+  {
+    image: hero4,
+    eyebrow: "Learning & Development Consulting",
+    title: "**Learning Solutions** That Go Beyond Slides",
+    desc: "We transform ideas, concepts, and business needs into engaging content and interactive training experiences.",
+    primaryCta: "Explore Our Solutions",
+  },
+  {
+    image: hero5,
+    eyebrow: "Learning & Development Consulting",
+    title: "Building **Capability** Through **Meaningful Learning**",
+    desc: "We create customised digital modules, classroom content, and training programs that help teams learn, apply, and perform better.",
+    primaryCta: "Explore Our Solutions",
+  },
+  {
+    image: hero6,
+    eyebrow: "Learning & Development Consulting",
+    title: "Learning That Builds **Capability**-Not Just Completion",
+    desc: "We help organisations design learning solutions that go beyond content creation, building capability that improves workplace performance.",
+    primaryCta: "Explore Our Solutions",
+  },
+] as const;
+
+/** Renders a title string, turning any **word** segments into primary-colored spans. */
+function renderHeroTitle(title: string) {
+  return title.split(/(\*\*[^*]+\*\*)/g).map((chunk, i) => {
+    if (chunk.startsWith("**") && chunk.endsWith("**")) {
+      return (
+        <span key={i} className="text-primary">
+          {chunk.slice(2, -2)}
+        </span>
+      );
+    }
+    return <span key={i}>{chunk}</span>;
+  });
+}
 
 // How many partner logos are visible at once in the carousel, per breakpoint.
 const PARTNERS_PER_PAGE = { base: 2, sm: 3, md: 4, lg: 5 };
 
 function HomePage() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonialRef = useRef<HTMLDivElement>(null);
   const partnersRef = useRef<HTMLDivElement>(null);
   const [activeHero, setActiveHero] = useState(0);
@@ -209,17 +285,54 @@ function HomePage() {
     return () => clearInterval(timer);
   }, []);
 
-  const scrollTestimonials = (direction: "left" | "right") => {
-    const el = testimonialRef.current;
-    if (!el) return;
-    const cardWidth = el.querySelector("[data-carousel-card]")?.clientWidth ?? 380;
-    const gap = 24;
-    el.scrollBy({
-      left: direction === "left" ? -(cardWidth + gap) : cardWidth + gap,
-      behavior: "smooth",
-    });
-  };
+ const scrollTestimonials = (direction: "left" | "right") => {
+  const el = testimonialRef.current;
+  if (!el) return;
 
+  setActiveTestimonial((prev) => {
+    const next =
+      direction === "left"
+        ? Math.max(prev - 1, 0)
+        : Math.min(prev + 1, testimonials.length - 1);
+
+    const cards = el.querySelectorAll("[data-carousel-card]");
+    const targetCard = cards[next] as HTMLElement | undefined;
+
+    targetCard?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+
+    return next;
+  });
+};
+
+const handleTestimonialScroll = () => {
+  const el = testimonialRef.current;
+  if (!el) return;
+
+  const cards = Array.from(
+    el.querySelectorAll("[data-carousel-card]")
+  ) as HTMLElement[];
+
+  const containerCenter = el.scrollLeft + el.clientWidth / 2;
+
+  let closestIndex = 0;
+  let closestDistance = Infinity;
+
+  cards.forEach((card, index) => {
+    const cardCenter = card.offsetLeft + card.clientWidth / 2;
+    const distance = Math.abs(containerCenter - cardCenter);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestIndex = index;
+    }
+  });
+
+  setActiveTestimonial(closestIndex);
+};
   // Slides the partner-logo row by roughly one "page" of logos at a time,
   // but still allows free dragging/scrolling by the user in between clicks.
   const scrollPartners = (direction: "left" | "right") => {
@@ -236,44 +349,57 @@ function HomePage() {
     <SiteLayout>
       {/* HERO */}
       <section className="hero-bg bg-cover bg-center bg-no-repeat relative overflow-hidden">
-        {heroSlides.map((image, index) => (
+        {heroSlides.map((slide, index) => (
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
               }`}
-            style={{ backgroundImage: `url(${image})`, backgroundPosition: "center top" }}
+            style={{ backgroundImage: `url(${slide.image})`, backgroundPosition: "center top" }}
           />
         ))}
 
         <div className="relative z-10 container-px mx-auto max-w-7xl pt-20 pb-20 md:pt-28 md:pb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-3xl"
-          >
-            <span className="eyebrow">Learning & Development Consulting</span>
-            <h1 className="display-h1 mt-5 text-foreground">
-              Learning That Builds <em className="text-primary not-italic">Capability</em>—Not
-              Just Completion
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              We help organisations design learning solutions that go beyond content creation.
-              Through instructional design, digital learning, facilitated workshops, experiential
-              programs and AI-enabled learning workflows, we build capability that improves
-              workplace performance.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/solutions">
-                  Explore Our Solutions <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/contact">Discuss Your Learning Need</Link>
-              </Button>
-            </div>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeHero}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl"
+            >
+              <span className="eyebrow">{heroSlides[activeHero].eyebrow}</span>
+              <h1 className="display-h1 mt-5 text-foreground">
+                {renderHeroTitle(heroSlides[activeHero].title)}
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                {heroSlides[activeHero].desc}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link to="/solutions">
+                    {heroSlides[activeHero].primaryCta} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link to="/contact">Discuss Your Learning Need</Link>
+                </Button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Dot navigation */}
+          <div className="relative z-10 mt-10 flex items-center gap-2">
+            {heroSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveHero(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2.5 rounded-full transition-all ${i === activeHero ? "w-8 bg-primary" : "w-2.5 bg-primary/30 hover:bg-primary/50"
+                  }`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -408,17 +534,29 @@ function HomePage() {
       </section>
 
       {/* IMPACT NUMBERS */}
-      <section className="bg-[color-mix(in_oklab,var(--primary)_96%,white)] text-primary-foreground">
-        <div className="container-px mx-auto max-w-7xl py-20">
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-primary-foreground"
+        style={{ backgroundImage: `url(${impactBg})` }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{ background: "color-mix(in oklab, var(--primary) 85%, black 60%)", opacity: 0.82 }}
+        />
+        <div className="relative container-px mx-auto max-w-7xl pt-20 pb-15">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 text-center">
             {impact.map((s) => (
               <div key={s.label}>
-                <div className="font-display text-4xl md:text-5xl">{s.value}</div>
-                <div className="mt-2 text-xs uppercase tracking-widest text-primary-foreground/70">
+                <div className="font-display text-3xl md:text-4xl lg:text-5xl">{s.value}</div>
+                <div className="mt-4 text-xs uppercase tracking-widest text-primary-foreground/70">
                   {s.label}
                 </div>
               </div>
             ))}
+          </div>
+          <div className="mt-12 flex items-center justify-center gap-3 text-xs text-primary-foreground/60">
+            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
+            <p>Experience figures reflect founder-led and delivered work. ARMS was established in 2019.</p>
+            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
           </div>
         </div>
       </section>
@@ -475,48 +613,102 @@ function HomePage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="sand-bg">
-        <div className="container-px mx-auto max-w-7xl section">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="max-w-2xl">
-              <span className="eyebrow">In their words</span>
-              <h2 className="display-h2 mt-3">What partners say about working with us</h2>
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => scrollTestimonials("left")}
-                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => scrollTestimonials("right")}
-                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
+      <section
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="container-px mx-auto max-w-7xl ">
+          <div className="text-center">
+            <span className="eyebrow justify-center">Testimonials</span>
+            <h2 className="display-h2 mt-3">What Our Clients Say</h2>
+            <div className="mx-auto mt-4 h-0.5 w-16 bg-primary" />
+            <p className="mt-4 text-sm text-muted-foreground">
+              Real feedback from organisations we’ve worked with.
+            </p>
           </div>
-          <div
-            ref={testimonialRef}
-            className="carousel-track mt-10 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-          >
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                data-carousel-card
-                className="card-elegant p-7 flex-shrink-0 snap-start w-[85vw] md:w-[45vw] lg:w-[32vw]"
-              >
-                <Quote className="h-7 w-7 text-primary/40" />
-                <p className="mt-4 text-foreground/90 leading-relaxed">{t.quote}</p>
-                <div className="mt-6 pt-4 border-t border-border">
-                  <div className="font-semibold">{t.name}</div>
-                  <div className="text-sm text-muted-foreground">{t.org}</div>
+
+          <div className="relative mt-10 px-14">
+            <button
+              onClick={() => scrollTestimonials("left")}
+             className="absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <div
+  ref={testimonialRef}
+  onScroll={handleTestimonialScroll}
+  className="carousel-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6"
+>
+              {testimonials.map((t, index) => (
+                <div
+                  key={`${t.name}-${index}`}
+                  data-carousel-card
+                 className="card-elegant relative shrink-0 snap-center w-[82vw] md:w-[72vw] lg:w-[64vw] xl:w-[58vw] p-6 md:p-9"
+                >
+                  <div className="grid gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-center">
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <Quote className="h-10 w-10 fill-primary text-primary" />
+
+                        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                          <Users2 className="h-3.5 w-3.5" />
+                          {t.tag}
+                        </div>
+                      </div>
+
+                      <p className="mt-6 max-w-2xl text-sm md:text-base leading-relaxed text-foreground/90">
+                        {t.quote}
+                      </p>
+
+                      <div className="mt-7">
+                        <div className="text-xl font-semibold text-primary">{t.name}</div>
+                        <div className="mt-1 text-sm text-muted-foreground">
+                          {t.role}, {t.org}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center md:justify-end">
+                      {t.image ? (
+                        <img
+                          src={t.image}
+                          alt={t.name}
+                          className="h-52 w-52 rounded-3xl object-cover shadow-elegant"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="flex h-52 w-52 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-elegant">
+                          <Users2 className="h-20 w-20" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <button
+              onClick={() => scrollTestimonials("right")}
+              className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"              aria-label="Next testimonial"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="mt-2 flex items-center justify-between px-6 text-xs text-muted-foreground">
+            <div>
+             <span className="font-semibold text-primary">
+  {String(activeTestimonial + 1).padStart(2, "0")}
+</span>
+<span className="mx-1">/</span>
+<span>{String(testimonials.length).padStart(2, "0")}</span>
+            </div>
+
+            <div className="hidden items-center gap-2 sm:flex">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span>Swipe to explore more testimonials</span>
+            </div>
           </div>
         </div>
       </section>
@@ -528,27 +720,59 @@ function HomePage() {
       >
         <div className="container-px mx-auto max-w-6xl">
           <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 shadow-elegant">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
+              style={{ backgroundImage: `url(${heroBg})` }}
+            />
             <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/30 blur-3xl" />
-            <div className="relative grid md:grid-cols-3 gap-8 items-center">
+
+            <div className="relative grid md:grid-cols-3 gap-10 items-center">
               <div className="md:col-span-2">
-                <h3 className="display-h2">Have a learning need? Let's build it together.</h3>
-                <p className="mt-4 text-primary-foreground/85 max-w-2xl">
-                  Whether you're designing a new capability journey, modernising existing
-                  content, or planning a high-impact offsite — we'd love to hear what you're
-                  working on.
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest text-gold">
+                  Let's build together
+                </span>
+                <div className="mt-2 h-0.5 w-10 bg-gold" />
+                <h3 className="display-h2 mt-5">
+                  Have a learning need? Let's build the right solution together.
+                </h3>
+                <p className="mt-4 text-primary-foreground/80 max-w-xl leading-relaxed">
+                  From digital learning and facilitated workshops to capability journeys
+                  and offsites, we design practical learning experiences aligned to your
+                  business goals.
                 </p>
               </div>
-              <div className="md:text-right">
-                <Button asChild size="lg" variant="secondary">
+
+              <div className="flex flex-col items-start md:items-end gap-3">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gold text-gold-foreground hover:bg-gold/90 shadow-[0_8px_30px_rgba(234,179,8,0.35)]"
+                >
                   <Link to="/contact">
                     Discuss Your Learning Need <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
+                <Link
+                  to="/solutions"
+                  className="inline-flex items-center gap-1 text-sm text-primary-foreground/70 hover:text-primary-foreground transition"
+                >
+                  Or explore our solutions <ChevronRight className="h-4 w-4" />
+                </Link>
               </div>
+            </div>
+
+            <div className="relative mt-10 pt-6 border-t border-primary-foreground/15 flex items-center justify-center gap-3">
+              <div className="h-9 w-9 rounded-full bg-primary-foreground/10 flex items-center justify-center">
+                <Users2 className="h-4 w-4" />
+              </div>
+              <p className="text-sm text-primary-foreground/80">
+                Purposeful learning. Practical impact.
+              </p>
             </div>
           </div>
         </div>
       </section>
+
     </SiteLayout>
   );
 }

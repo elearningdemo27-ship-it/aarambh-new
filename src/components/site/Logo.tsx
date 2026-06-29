@@ -16,7 +16,7 @@ export function Logo({
       <img
         src={logoSrc}
         alt="Aarambh Resource Management Solutions"
-        className="h-12 w-auto md:h-14 object-contain"
+        className="h-16 w-auto md:h-20 object-contain"
       />
     </Link>
   );

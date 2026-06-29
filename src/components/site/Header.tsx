@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/solutions", label: "Solutions" },
+  { to: "/about", label: "About Us" },
+  { to: "/solutions", label: "Services" },
   { to: "/success-stories", label: "Success Stories" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact Us" },
@@ -30,7 +30,7 @@ export function Header() {
         scrolled ? "bg-background/85 border-b border-border" : "bg-background/60"
       }`}
     >
-      <div className="container-px mx-auto max-w-7xl flex items-center justify-between py-3">
+      <div className="container-px mx-auto max-w-7xl flex items-center justify-between ">
         <Logo />
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((item) => (
