@@ -1,778 +1,245 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import hero1 from "@/assets/hero/hero-1.png";
-import hero2 from "@/assets/hero/hero-2.png";
-import hero3 from "@/assets/hero/hero-3.png";
-import hero4 from "@/assets/hero/hero-4.png";
-import hero5 from "@/assets/hero/hero-5.png";
-import hero6 from "@/assets/hero/hero-6.png";
+import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  Building2,
-  Banknote,
-  ShoppingBag,
-  Factory,
-  HeartPulse,
-  Cpu,
   Compass,
   BookOpen,
   Sparkles,
-  Mic2,
-  Mountain,
   Brain,
-  CheckCircle2,
-  Quote,
-  ChevronLeft,
-  ChevronRight,
-  Users2,
+  Mountain,
+  Mic2,
+  ArrowRight,
+  Check,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 
-// Individual partner/client logos from src/assets/partners/
-import partnerLogo1 from "@/assets/partners/Asset 1@4x-8.png";
-import partnerLogo2 from "@/assets/partners/Asset 2@4x-8.png";
-import partnerLogo3 from "@/assets/partners/Asset 3@4x-8.png";
-import partnerLogo4 from "@/assets/partners/Asset 4@4x-8.png";
-import partnerLogo5 from "@/assets/partners/Asset 5@4x-8.png";
-import partnerLogo6 from "@/assets/partners/Asset 6@4x-8.png";
-import partnerLogo7 from "@/assets/partners/Asset 7@4x-8.png";
-import partnerLogo8 from "@/assets/partners/Asset 8@4x-8.png";
-import partnerLogo9 from "@/assets/partners/Asset 9@4x-8.png";
-import partnerLogo10 from "@/assets/partners/Asset 10@4x-8.png";
-import partnerLogo11 from "@/assets/partners/Asset 11@4x-8.png";
-import partnerLogo12 from "@/assets/partners/Asset 12@4x-8.png";
-import partnerLogo13 from "@/assets/partners/Asset 13@4x-8.png";
-
-// Service section photos from src/assets/service/
+// Service section photos from src/assets/service/ — same set used on the homepage.
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
 import serviceDesign from "@/assets/service/service-design.jpeg";
 import serviceAi from "@/assets/service/service-ai.jpeg";
 import serviceFacilitation from "@/assets/service/service-facilitation.jpeg";
 import serviceOffsite from "@/assets/service/service-offsite.jpeg";
 import serviceKeynote from "@/assets/service/service-keynote.jpeg";
-import heroBg from "@/assets/minimal-bg.png";
-import heroBg2 from "@/assets/minimal-bg2.png";
-import impactBg from "@/assets/bg-compnies-growth.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aarambh — Learning That Builds Capability, Not Just Completion" },
+      { title: "Solutions — L&D Consulting, Digital Learning, AI Workflows | Aarambh" },
       {
         name: "description",
         content:
-          "L&D consulting that goes beyond content. Instructional design, digital learning, facilitation, experiential programs and AI-enabled workflows that improve workplace performance.",
+          "Six integrated solutions: learning strategy, instructional design, AI-enabled learning, facilitation, experiential offsites and keynotes.",
       },
-      { property: "og:title", content: "Aarambh — Learning That Builds Capability" },
-      {
-        property: "og:description",
-        content:
-          "We help organisations build capability through purposeful learning design and AI-enabled workflows.",
-      },
-      { property: "og:url", content: "/" },
+      { property: "og:title", content: "Solutions — Aarambh" },
+      { property: "og:description", content: "Strategy, design, delivery and AI for L&D." },
+      { property: "og:url", content: "/solutions" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "/solutions" }],
   }),
-  component: HomePage,
+  component: SolutionsPage,
 });
 
-const industries = [
-  { icon: Banknote, label: "BFSI" },
-  { icon: ShoppingBag, label: "Retail & FMCG" },
-  { icon: Factory, label: "Manufacturing" },
-  { icon: HeartPulse, label: "Healthcare & Pharma" },
-  { icon: Cpu, label: "Technology" },
-  { icon: Building2, label: "Professional Services" },
-];
-
-const differentiators = [
+const solutions = [
   {
-    title: "Practitioner-led",
-    body: "We bring decades of real workplace experience to the design table.",
-  },
-  {
-    title: "Instructional design depth",
-    body: "Structured learning for clarity, retention and behavioural change.",
-  },
-  {
-    title: "Facilitation strength",
-    body: "Workshops that create engagement, reflection and ownership.",
-  },
-  {
-    title: "BFSI & sales fluency",
-    body: "Domain-relevant learning built for frontline performance.",
-  },
-  {
-    title: "AI-ready mindset",
-    body: "Modernise learning workflows without compromising quality.",
-  },
-];
-
-const services = [
-  {
+    id: "strategy",
     icon: Compass,
     image: serviceStrategy,
     title: "Learning Strategy & Consulting",
-    desc: "TNA, capability mapping, learning journeys and impact planning.",
+    headline: "Where Learning Meets Strategy",
+    short: "TNA, capability mapping, learning journeys and impact planning.",
+    items: [
+      "Training needs analysis",
+      "Learning journey design",
+      "Capability mapping",
+      "Content audits",
+      "Learning impact planning",
+    ],
   },
   {
+    id: "id",
     icon: BookOpen,
     image: serviceDesign,
-    title: "Instructional Design & Content",
-    desc: "ILT, eLearning, blended programs, SCORM, microlearning and more.",
+    title: "Instructional Design & Content Development",
+    headline: "Content That Engages. Learning That Sticks.",
+    short: "ILT, eLearning, blended programs, SCORM, microlearning and more.",
+    items: [
+      "ILT, eLearning and blended learning design",
+      "Storyboards, facilitator guides, workbooks, assessments",
+      "SCORM modules and microlearning",
+      "Scenario-based learning",
+      "HTML5 conversion, translation and localization",
+    ],
   },
   {
+    id: "ai",
     icon: Sparkles,
     image: serviceAi,
-    title: "AI-Enabled Learning",
-    desc: "AI job aids, prompt libraries, AI literacy and skill practice.",
+    title: "AI-Enabled Learning Solutions",
+    headline: "Where AI Supports Performance and Skill Building",
+    short: "AI job aids, prompt libraries, AI literacy and skill practice.",
+    items: [
+      "AI-assisted job aids and prompt-based workflows",
+      "AI-enabled knowledge refreshers",
+      "Scenario-based skill practice",
+      "Prompt libraries",
+      "AI literacy programs",
+      "AI-assisted content review",
+    ],
   },
   {
+    id: "delivery",
     icon: Brain,
     image: serviceFacilitation,
     title: "Training Delivery & Facilitation",
-    desc: "BFSI, soft skills, leadership, sales, TTT and managerial programs.",
+    headline: "Learning Delivery That Engages, Enables, and Empowers",
+    short: "BFSI, soft skills, leadership, sales and TTT programs.",
+    items: [
+      "BFSI domain training",
+      "Soft skills and behavioural programs",
+      "Leadership and managerial training",
+      "Sales and service training",
+      "Train-the-trainer programs",
+    ],
   },
   {
+    id: "offsites",
     icon: Mountain,
     image: serviceOffsite,
-    title: "Offsites & Experiential",
-    desc: "Leadership retreats, team alignment, outbound and simulations.",
+    title: "Offsites & Experiential Learning",
+    headline: "Where Team Experiences Turn into Workplace Impact",
+    short: "Leadership retreats, team alignment, outbound and simulations.",
+    items: [
+      "Leadership retreats",
+      "Team alignment workshops",
+      "Outbound learning",
+      "Sales energisers",
+      "Culture-building interventions",
+      "Simulations and debrief-led learning",
+    ],
   },
   {
+    id: "keynotes",
     icon: Mic2,
     image: serviceKeynote,
-    title: "Keynotes & Motivational",
-    desc: "Leadership, resilience, ownership and performance mindset talks.",
+    title: "Keynotes & Motivational Sessions",
+    headline: "Stories That Move People. Insights That Stay.",
+    short: "Leadership, resilience, ownership and performance mindset talks.",
+    items: [
+      "Leadership and resilience",
+      "Ownership and accountability",
+      "Women leadership",
+      "Change and transformation",
+      "Performance mindset, team energy and motivation",
+    ],
   },
 ] as const;
 
-const impact = [
-  { value: "30+", label: "Founder's years in L&D & capability-building" },
-  { value: "15+", label: "Years in digital learning & eLearning" },
-  { value: "300+", label: "Workshops delivered" },
-  { value: "1.3L+", label: "Learner man-hours impacted" },
-  { value: "250+", label: "eLearning hours created" },
-  { value: "Since 2019", label: "ARMS in practice" },
-  { value: "Multi", label: "Industries served across India" },
-];
-
-// Partner/client logos shown in the sliding carousel below the impact numbers.
-const partnerLogos = [
-  { src: partnerLogo1, name: "Partner 1" },
-  { src: partnerLogo2, name: "Partner 2" },
-  { src: partnerLogo3, name: "Partner 3" },
-  { src: partnerLogo4, name: "Partner 4" },
-  { src: partnerLogo5, name: "Partner 5" },
-  { src: partnerLogo6, name: "Partner 6" },
-  { src: partnerLogo7, name: "Partner 7" },
-  { src: partnerLogo8, name: "Partner 8" },
-  { src: partnerLogo9, name: "Partner 9" },
-  { src: partnerLogo10, name: "Partner 10" },
-  { src: partnerLogo11, name: "Partner 11" },
-  { src: partnerLogo12, name: "Partner 12" },
-  { src: partnerLogo13, name: "Partner 13" },
-];
-
-const testimonials = [
-  {
-    tag: "Behavioural Skills Workshop",
-    quote:
-      "ARMS delivered a highly impactful 3-day Behavioural Skills Workshop for our managerial cadre. The program was engaging, practical, and deeply relevant to workplace realities.",
-    name: "Amitabh",
-    role: "Managing Director",
-    org: "Creative Museum Designer, Kolkata",
-    image: "", // add image here later
-  },
-  {
-    tag: "Leadership Development",
-    quote:
-      "The facilitation brought together strong energy, meaningful reflection, and actionable learning. The workshop experience was powerful and memorable for our team.",
-    name: "Client Name",
-    role: "Head of HR",
-    org: "Manufacturing Organisation",
-    image: "",
-  },
-  {
-    tag: "Learning Design",
-    quote:
-      "Aarambh helped us convert complex content into a clean and learner-friendly experience. Their approach was structured, practical, and aligned to our business needs.",
-    name: "Client Name",
-    role: "L&D Lead",
-    org: "BFSI Organisation",
-    image: "",
-  },
-];
-
-// Each hero slide pairs its own background photo with its own headline, copy and CTA label.
-// `title` uses **double asterisks** around any word/phrase that should render in the primary
-// theme color — add or edit slides here without touching the render logic below.
-const heroSlides = [
-  {
-    image: hero1,
-    eyebrow: "Learning & Development Consulting",
-    title: "Content That **Teaches.** Training That **Transforms.**",
-    desc: "We design impactful digital and ILT learning content and deliver engaging training experiences across BFSI, soft skills, leadership, and outbound learning.",
-    primaryCta: "Explore Our Services",
-  },
-  {
-    image: hero2,
-    eyebrow: "Learning & Development Consulting",
-    title: "From **Learning Design** to **Learning Delivery**",
-    desc: "End-to-end solutions for organisations looking for well-structured content and powerful facilitator-led learning interventions.",
-    primaryCta: "Explore Our Solutions",
-  },
-  {
-    image: hero3,
-    eyebrow: "Learning & Development Consulting",
-    title: "Designed for **Learners.** Delivered for **Impact.**",
-    desc: "Whether it is BFSI domain training, leadership development, soft skills, or outbound programs, we bring content and delivery together with purpose.",
-    primaryCta: "Explore Our Solutions",
-  },
-  {
-    image: hero4,
-    eyebrow: "Learning & Development Consulting",
-    title: "**Learning Solutions** That Go Beyond Slides",
-    desc: "We transform ideas, concepts, and business needs into engaging content and interactive training experiences.",
-    primaryCta: "Explore Our Solutions",
-  },
-  {
-    image: hero5,
-    eyebrow: "Learning & Development Consulting",
-    title: "Building **Capability** Through **Meaningful Learning**",
-    desc: "We create customised digital modules, classroom content, and training programs that help teams learn, apply, and perform better.",
-    primaryCta: "Explore Our Solutions",
-  },
-  {
-    image: hero6,
-    eyebrow: "Learning & Development Consulting",
-    title: "Learning That Builds **Capability**-Not Just Completion",
-    desc: "We help organisations design learning solutions that go beyond content creation, building capability that improves workplace performance.",
-    primaryCta: "Explore Our Solutions",
-  },
-] as const;
-
-/** Renders a title string, turning any **word** segments into primary-colored spans. */
-function renderHeroTitle(title: string) {
-  return title.split(/(\*\*[^*]+\*\*)/g).map((chunk, i) => {
-    if (chunk.startsWith("**") && chunk.endsWith("**")) {
-      return (
-        <span key={i} className="text-primary">
-          {chunk.slice(2, -2)}
-        </span>
-      );
-    }
-    return <span key={i}>{chunk}</span>;
-  });
-}
-
-// How many partner logos are visible at once in the carousel, per breakpoint.
-const PARTNERS_PER_PAGE = { base: 2, sm: 3, md: 4, lg: 5 };
-
-function HomePage() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const testimonialRef = useRef<HTMLDivElement>(null);
-  const partnersRef = useRef<HTMLDivElement>(null);
-  const [activeHero, setActiveHero] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveHero((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, []);
-
- const scrollTestimonials = (direction: "left" | "right") => {
-  const el = testimonialRef.current;
-  if (!el) return;
-
-  setActiveTestimonial((prev) => {
-    const next =
-      direction === "left"
-        ? Math.max(prev - 1, 0)
-        : Math.min(prev + 1, testimonials.length - 1);
-
-    const cards = el.querySelectorAll("[data-carousel-card]");
-    const targetCard = cards[next] as HTMLElement | undefined;
-
-    targetCard?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-
-    return next;
-  });
-};
-
-const handleTestimonialScroll = () => {
-  const el = testimonialRef.current;
-  if (!el) return;
-
-  const cards = Array.from(
-    el.querySelectorAll("[data-carousel-card]")
-  ) as HTMLElement[];
-
-  const containerCenter = el.scrollLeft + el.clientWidth / 2;
-
-  let closestIndex = 0;
-  let closestDistance = Infinity;
-
-  cards.forEach((card, index) => {
-    const cardCenter = card.offsetLeft + card.clientWidth / 2;
-    const distance = Math.abs(containerCenter - cardCenter);
-
-    if (distance < closestDistance) {
-      closestDistance = distance;
-      closestIndex = index;
-    }
-  });
-
-  setActiveTestimonial(closestIndex);
-};
-  // Slides the partner-logo row by roughly one "page" of logos at a time,
-  // but still allows free dragging/scrolling by the user in between clicks.
-  const scrollPartners = (direction: "left" | "right") => {
-    const el = partnersRef.current;
-    if (!el) return;
-    const amount = el.clientWidth * 0.9;
-    el.scrollBy({
-      left: direction === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-  };
-
+function SolutionsPage() {
   return (
     <SiteLayout>
-      {/* HERO */}
-      <section className="hero-bg bg-cover bg-center bg-no-repeat relative overflow-hidden">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
-              }`}
-            style={{ backgroundImage: `url(${slide.image})`, backgroundPosition: "center top" }}
-          />
-        ))}
-
-        <div className="relative z-10 container-px mx-auto max-w-7xl pt-20 pb-20 md:pt-28 md:pb-24">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeHero}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl"
-            >
-              <span className="eyebrow">{heroSlides[activeHero].eyebrow}</span>
-              <h1 className="display-h1 mt-5 text-foreground">
-                {renderHeroTitle(heroSlides[activeHero].title)}
-              </h1>
-              <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                {heroSlides[activeHero].desc}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg">
-                  <Link to="/solutions">
-                    {heroSlides[activeHero].primaryCta} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/contact">Discuss Your Learning Need</Link>
-                </Button>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Dot navigation */}
-          <div className="relative z-10 mt-10 flex items-center gap-2">
-            {heroSlides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveHero(i)}
-                aria-label={`Go to slide ${i + 1}`}
-                className={`h-2.5 rounded-full transition-all ${i === activeHero ? "w-8 bg-primary" : "w-2.5 bg-primary/30 hover:bg-primary/50"
-                  }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-background">
-        <div className="container-px mx-auto max-w-7xl py-6">
-          <div className="grid gap-5 md:grid-cols-5 items-center">
-            <div className="flex items-center gap-2 font-semibold text-primary">
-              <Sparkles className="h-4 w-4" />
-              <span>Why teams choose Aarambh</span>
-            </div>
-
-            {[
-              "Practitioner-led learning design",
-              "Deep BFSI, sales & leadership expertise",
-              "Digital, AI-enabled & experiential delivery",
-              "Measurable workplace impact",
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-3 text-sm text-foreground">
-                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* INDUSTRIES */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="eyebrow">Industries we serve</span>
-              <h2 className="display-h2 mt-3 max-w-2xl">
-                Learning designed for the realities of your industry
-              </h2>
-            </div>
-            <p className="md:max-w-sm text-muted-foreground">
-              From BFSI to manufacturing, our programs are rooted in domain context — not generic templates.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map(({ icon: Icon, label }) => (
-              <div key={label} className="card-elegant p-6 flex flex-col items-center text-center">
-                <Icon className="h-7 w-7 text-primary" />
-                <div className="mt-3 text-sm font-medium">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DIFFERENTIATORS */}
-      <section className="sand-bg">
-        <div className="container-px mx-auto max-w-7xl section">
-          <div className="max-w-3xl">
-            <span className="eyebrow">What makes us different</span>
-            <h2 className="display-h2 mt-3">
-              Practitioner-led learning. Designed for real workplace impact.
-            </h2>
-          </div>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-            {differentiators.map((d, i) => (
-              <motion.div
-                key={d.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="card-elegant p-6"
-              >
-                <div className="text-3xl font-display text-primary/40">0{i + 1}</div>
-                <div className="mt-3 font-semibold">{d.title}</div>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.body}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg2})` }}
-      >
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="eyebrow">Our solutions</span>
-              <h2 className="display-h2 mt-3 max-w-2xl">
-                A full L&amp;D partner across strategy, design and delivery
-              </h2>
-            </div>
-            <Button asChild variant="outline">
-              <Link to="/solutions">
-                See all solutions <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(({ icon: Icon, image, title, desc }) => (
-              <Link
-                key={title}
-                to="/solutions"
-                className="card-elegant overflow-hidden group block"
-              >
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={image}
-                    alt={title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
-                  <div className="absolute bottom-3 left-3 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center shadow-elegant">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                </div>
-                <div className="p-7">
-                  <h3 className="text-xl font-display">{title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                  <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-70 group-hover:opacity-100 transition">
-                    Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* IMPACT NUMBERS */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-primary-foreground"
-        style={{ backgroundImage: `url(${impactBg})` }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{ background: "color-mix(in oklab, var(--primary) 85%, black 60%)", opacity: 0.82 }}
-        />
-        <div className="relative container-px mx-auto max-w-7xl pt-20 pb-15">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 text-center">
-            {impact.map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-3xl md:text-4xl lg:text-5xl">{s.value}</div>
-                <div className="mt-4 text-xs uppercase tracking-widest text-primary-foreground/70">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 flex items-center justify-center gap-3 text-xs text-primary-foreground/60">
-            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
-            <p>Experience figures reflect founder-led and delivered work. ARMS was established in 2019.</p>
-            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
-          </div>
-        </div>
-      </section>
-
-      {/* CLIENT LOGOS — sliding carousel, one row, manual + arrow navigation */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="container-px mx-auto max-w-7xl">
-          <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Trusted by L&amp;D and business leaders across industries
+      <section className="hero-bg">
+        <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
+          <span className="eyebrow">Our solutions</span>
+          <h1 className="display-h1 mt-5 max-w-4xl">
+            A complete L&amp;D partner — from <em className="text-primary not-italic">strategy</em> to{" "}
+            <em className="text-primary not-italic">delivery</em>.
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
+            Six integrated solutions, designed to be picked individually or stitched together
+            into a complete capability journey.
           </p>
-
-          <div className="mt-10 relative flex items-center gap-3">
-            <button
-              onClick={() => scrollPartners("left")}
-              className="hidden sm:flex h-10 w-10 shrink-0 rounded-full border border-border bg-background items-center justify-center hover:bg-muted transition"
-              aria-label="Show previous partners"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-
-            <div
-              ref={partnersRef}
-              className="flex-1 flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-6"
-            >
-              {partnerLogos.map((logo) => (
-                <div
-                  key={logo.name}
-                  data-carousel-card
-                  className="group shrink-0 snap-start flex items-center justify-center h-20 w-36 sm:w-40 px-4"
-                  style={{ perspective: "600px" }}
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    loading="lazy"
-                    className="max-h-12 max-w-full object-contain transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.15] group-hover:-translate-y-1 group-hover:drop-shadow-[0_12px_16px_rgba(0,0,0,0.18)]"
-                  />
-                </div>
-              ))}
-            </div>
-
-            <button
-              onClick={() => scrollPartners("right")}
-              className="hidden sm:flex h-10 w-10 shrink-0 rounded-full border border-border bg-background items-center justify-center hover:bg-muted transition"
-              aria-label="Show next partners"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="container-px mx-auto max-w-7xl ">
-          <div className="text-center">
-            <span className="eyebrow justify-center">Testimonials</span>
-            <h2 className="display-h2 mt-3">What Our Clients Say</h2>
-            <div className="mx-auto mt-4 h-0.5 w-16 bg-primary" />
-            <p className="mt-4 text-sm text-muted-foreground">
-              Real feedback from organisations we’ve worked with.
-            </p>
-          </div>
-
-          <div className="relative mt-10 px-14">
-            <button
-              onClick={() => scrollTestimonials("left")}
-             className="absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"              aria-label="Previous testimonial"
+      <section className="section">
+        <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {solutions.map(({ id, icon: Icon, image, title, short }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className="card-elegant overflow-hidden group block"
             >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-
-            <div
-  ref={testimonialRef}
-  onScroll={handleTestimonialScroll}
-  className="carousel-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6"
->
-              {testimonials.map((t, index) => (
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={image}
+                  alt={title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
                 <div
-                  key={`${t.name}-${index}`}
-                  data-carousel-card
-                 className="card-elegant relative shrink-0 snap-center w-[82vw] md:w-[72vw] lg:w-[64vw] xl:w-[58vw] p-6 md:p-9"
+                  className="absolute bottom-3 left-3 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-0.5"
+                  style={{
+                    boxShadow:
+                      "0 1px 1px rgba(0,0,0,0.18), 0 6px 12px -2px rgba(0,0,0,0.28), 0 14px 24px -6px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.6)",
+                  }}
                 >
-                  <div className="grid gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-center">
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <Quote className="h-10 w-10 fill-primary text-primary" />
-
-                        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                          <Users2 className="h-3.5 w-3.5" />
-                          {t.tag}
-                        </div>
-                      </div>
-
-                      <p className="mt-6 max-w-2xl text-sm md:text-base leading-relaxed text-foreground/90">
-                        {t.quote}
-                      </p>
-
-                      <div className="mt-7">
-                        <div className="text-xl font-semibold text-primary">{t.name}</div>
-                        <div className="mt-1 text-sm text-muted-foreground">
-                          {t.role}, {t.org}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-center md:justify-end">
-                      {t.image ? (
-                        <img
-                          src={t.image}
-                          alt={t.name}
-                          className="h-52 w-52 rounded-3xl object-cover shadow-elegant"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="flex h-52 w-52 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-elegant">
-                          <Users2 className="h-20 w-20" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  <Icon className="h-5 w-5" />
                 </div>
-              ))}
-            </div>
-
-            <button
-              onClick={() => scrollTestimonials("right")}
-              className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"              aria-label="Next testimonial"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="mt-2 flex items-center justify-between px-6 text-xs text-muted-foreground">
-            <div>
-             <span className="font-semibold text-primary">
-  {String(activeTestimonial + 1).padStart(2, "0")}
-</span>
-<span className="mx-1">/</span>
-<span>{String(testimonials.length).padStart(2, "0")}</span>
-            </div>
-
-            <div className="hidden items-center gap-2 sm:flex">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span>Swipe to explore more testimonials</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg2})` }}
-      >
-        <div className="container-px mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 shadow-elegant">
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
-              style={{ backgroundImage: `url(${heroBg})` }}
-            />
-            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/30 blur-3xl" />
-
-            <div className="relative grid md:grid-cols-3 gap-10 items-center">
-              <div className="md:col-span-2">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest text-gold">
-                  Let's build together
-                </span>
-                <div className="mt-2 h-0.5 w-10 bg-gold" />
-                <h3 className="display-h2 mt-5">
-                  Have a learning need? Let's build the right solution together.
-                </h3>
-                <p className="mt-4 text-primary-foreground/80 max-w-xl leading-relaxed">
-                  From digital learning and facilitated workshops to capability journeys
-                  and offsites, we design practical learning experiences aligned to your
-                  business goals.
-                </p>
               </div>
+              <div className="p-7">
+                <h3 className="text-xl font-display">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{short}</p>
+                <div className="mt-5 inline-flex items-center text-sm font-medium text-primary">
+                  Learn more <ArrowRight className="ml-1.5 h-4 w-4 transition group-hover:translate-x-1" />
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
 
-              <div className="flex flex-col items-start md:items-end gap-3">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-gold text-gold-foreground hover:bg-gold/90 shadow-[0_8px_30px_rgba(234,179,8,0.35)]"
-                >
-                  <Link to="/contact">
-                    Discuss Your Learning Need <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Link
-                  to="/solutions"
-                  className="inline-flex items-center gap-1 text-sm text-primary-foreground/70 hover:text-primary-foreground transition"
-                >
-                  Or explore our solutions <ChevronRight className="h-4 w-4" />
+      {solutions.map((s, idx) => (
+        <section
+          key={s.id}
+          id={s.id}
+          className={idx % 2 === 0 ? "sand-bg" : ""}
+        >
+          <div className="container-px mx-auto max-w-7xl section grid lg:grid-cols-12 gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-elegant">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  loading="lazy"
+                  className="w-full h-56 object-cover"
+                />
+                <div className="absolute -bottom-6 left-6 h-14 w-14 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-elegant">
+                  <s.icon className="h-7 w-7" />
+                </div>
+              </div>
+              <span className="eyebrow mt-10 block">{s.title}</span>
+              <h2 className="display-h2 mt-3">{s.headline}</h2>
+              <Button asChild className="mt-6">
+                <Link to="/contact">
+                  Discuss this solution <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
+              </Button>
+            </motion.div>
+            <div className="lg:col-span-7">
+              <div className="card-elegant p-8">
+                <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+                  What's included
+                </div>
+                <ul className="mt-5 grid sm:grid-cols-2 gap-3">
+                  {s.items.map((i) => (
+                    <li key={i} className="flex gap-3 items-start text-sm">
+                      <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-foreground/90">{i}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            <div className="relative mt-10 pt-6 border-t border-primary-foreground/15 flex items-center justify-center gap-3">
-              <div className="h-9 w-9 rounded-full bg-primary-foreground/10 flex items-center justify-center">
-                <Users2 className="h-4 w-4" />
-              </div>
-              <p className="text-sm text-primary-foreground/80">
-                Purposeful learning. Practical impact.
-              </p>
             </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      ))}
     </SiteLayout>
   );
 }
