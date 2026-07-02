@@ -60,8 +60,8 @@ import heroBg from "@/assets/minimal-bg.png";
 import heroBg2 from "@/assets/minimal-bg2.png";
 import impactBg from "@/assets/bg-compnies-growth.png";
 import aboutus1 from "@/assets/aboutus/aboutus1.png";
-import aboutus3 from "@/assets/aboutus/aboutus2.png";
-import aboutus2 from "@/assets/aboutus/aboutus3.png";
+import aboutus2 from "@/assets/aboutus/aboutus2.png";
+import aboutus3 from "@/assets/aboutus/aboutus3.png";
 
 
 export const Route = createFileRoute("/")({
@@ -507,7 +507,7 @@ function HomePage() {
                 />
 
                 <img
-                  src={aboutus2}
+                  src={aboutus3}
                   alt="Corporate training"
                   className="h-64 w-full rounded-3xl object-cover shadow-lg"
                 />
@@ -515,7 +515,7 @@ function HomePage() {
               </div>
 
               <img
-                src={aboutus3}
+                src={aboutus2}
                 alt="Facilitator"
                 className="h-full min-h-[545px] w-full rounded-3xl object-cover shadow-xl"
               />
@@ -573,7 +573,7 @@ function HomePage() {
       {/* INDUSTRIES */}
       <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        style={{ backgroundImage: `url(${heroBg2})` }}
       >
         <div className="container-px mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
