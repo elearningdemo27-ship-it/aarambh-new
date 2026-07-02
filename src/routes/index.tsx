@@ -47,7 +47,7 @@ import partnerLogo12 from "@/assets/partners/Asset 12@4x-8.png";
 import partnerLogo13 from "@/assets/partners/Asset 13@4x-8.png";
 import partnerlogo14 from "@/assets/partners/ebay.png";
 import partnerlogo15 from "@/assets/partners/indiafirst.jpeg";
-import partnerlogo16 from "@/assets/partners/india-post-logo.jpg";
+import partnerlogo16 from "@/assets/partners/indiapostlogo.jpg";
 import partnerlogo17 from "@/assets/partners/chandigarh-univercity.png";
 // Service section photos from src/assets/service/
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
