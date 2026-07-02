@@ -570,33 +570,7 @@ function HomePage() {
 
         </div>
       </section>
-      {/* INDUSTRIES */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg2})` }}
-      >
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="eyebrow">Industries we serve</span>
-              <h2 className="display-h2 mt-3 max-w-2xl">
-                Learning designed for the realities of your industry
-              </h2>
-            </div>
-            <p className="md:max-w-sm text-muted-foreground">
-              From BFSI to manufacturing, our programs are rooted in domain context — not generic templates.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map(({ icon: Icon, label }) => (
-              <div key={label} className="card-elegant p-6 flex flex-col items-center text-center">
-                <Icon className="h-7 w-7 text-primary" />
-                <div className="mt-3 text-sm font-medium">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* DIFFERENTIATORS */}
       <section
@@ -734,7 +708,33 @@ function HomePage() {
           </div>
         </div>
       </section>
-
+ {/* INDUSTRIES */}
+      <section
+        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
+      >
+        <div className="container-px mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <span className="eyebrow">Industries we serve</span>
+              <h2 className="display-h2 mt-3 max-w-2xl">
+                Learning designed for the realities of your industry
+              </h2>
+            </div>
+            <p className="md:max-w-sm text-muted-foreground">
+              From BFSI to manufacturing, our programs are rooted in domain context — not generic templates.
+            </p>
+          </div>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {industries.map(({ icon: Icon, label }) => (
+              <div key={label} className="card-elegant p-6 flex flex-col items-center text-center">
+                <Icon className="h-7 w-7 text-primary" />
+                <div className="mt-3 text-sm font-medium">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* CLIENTS */}
       <section
         className="section hero-bg relative overflow-hidden bg-cover bg-no-repeat"
