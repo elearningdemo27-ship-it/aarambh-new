@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 import hero1 from "@/assets/hero/hero-1.png";
 import hero2 from "@/assets/hero/hero-2.png";
 import hero3 from "@/assets/hero/hero-3.png";
@@ -44,7 +45,10 @@ import partnerLogo10 from "@/assets/partners/Asset 10@4x-8.png";
 import partnerLogo11 from "@/assets/partners/Asset 11@4x-8.png";
 import partnerLogo12 from "@/assets/partners/Asset 12@4x-8.png";
 import partnerLogo13 from "@/assets/partners/Asset 13@4x-8.png";
-
+import partnerlogo14 from "@/assets/partners/ebay.png";
+import partnerlogo15 from "@/assets/partners/indiafirst.jpeg";
+import partnerlogo16 from "@/assets/partners/india-post-logo.jpg";
+import partnerlogo17 from "@/assets/partners/chandigarh-univercity.png";
 // Service section photos from src/assets/service/
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
 import serviceDesign from "@/assets/service/service-design.jpeg";
@@ -55,6 +59,10 @@ import serviceKeynote from "@/assets/service/service-keynote.jpeg";
 import heroBg from "@/assets/minimal-bg.png";
 import heroBg2 from "@/assets/minimal-bg2.png";
 import impactBg from "@/assets/bg-compnies-growth.png";
+import aboutus1 from "@/assets/aboutus/aboutus1.png";
+import aboutus3 from "@/assets/aboutus/aboutus2.png";
+import aboutus2 from "@/assets/aboutus/aboutus3.png";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -160,21 +168,6 @@ const impact = [
 ];
 
 // Partner/client logos shown in the sliding carousel below the impact numbers.
-const partnerLogos = [
-  { src: partnerLogo1, name: "Partner 1" },
-  { src: partnerLogo2, name: "Partner 2" },
-  { src: partnerLogo3, name: "Partner 3" },
-  { src: partnerLogo4, name: "Partner 4" },
-  { src: partnerLogo5, name: "Partner 5" },
-  { src: partnerLogo6, name: "Partner 6" },
-  { src: partnerLogo7, name: "Partner 7" },
-  { src: partnerLogo8, name: "Partner 8" },
-  { src: partnerLogo9, name: "Partner 9" },
-  { src: partnerLogo10, name: "Partner 10" },
-  { src: partnerLogo11, name: "Partner 11" },
-  { src: partnerLogo12, name: "Partner 12" },
-  { src: partnerLogo13, name: "Partner 13" },
-];
 
 const testimonials = [
   {
@@ -269,7 +262,71 @@ function renderHeroTitle(title: string) {
 }
 
 // How many partner logos are visible at once in the carousel, per breakpoint.
-const PARTNERS_PER_PAGE = { base: 2, sm: 3, md: 4, lg: 5 };
+function ClientCategory({
+  title,
+  logos,
+}: {
+  title: string;
+  logos: string[];
+}) {
+  return (
+    <div className="mb-10">
+
+      <div className="mb-5 flex items-center gap-3">
+
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+          <Building2 className="h-5 w-5" />
+        </div>
+
+        <h3 className="text-xl font-semibold">
+          {title}
+        </h3>
+
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+
+        {logos.map((logo, index) => (
+          <div
+            key={index}
+            className="
+              group
+              rounded-xl
+              border
+              border-border
+              bg-background
+              h-28
+              flex
+              items-center
+              justify-center
+              p-5
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:shadow-xl
+              hover:border-primary/40
+            "
+          >
+            <img
+              src={logo}
+              alt=""
+              className="
+                max-h-16
+                w-auto
+                object-contain
+                transition-transform
+                duration-300
+                group-hover:scale-110
+              "
+            />
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  );
+}
 
 function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -425,7 +482,94 @@ function HomePage() {
           </div>
         </div>
       </section>
+      {/* ABOUT US */}
+      <section
+        className="section relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        {/* Decorative Background */}
+        <div className="absolute left-0 top-0 h-56 w-56 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
 
+        <div className="container-px relative mx-auto max-w-7xl">
+
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+
+            {/* Images */}
+            <div className="grid grid-cols-[0.9fr_1.1fr] gap-5">
+
+              <div className="flex flex-col gap-5">
+
+                <img
+                  src={aboutus1}
+                  alt="Learning workshop"
+                  className="h-64 w-full rounded-3xl object-cover shadow-lg"
+                />
+
+                <img
+                  src={aboutus2}
+                  alt="Corporate training"
+                  className="h-64 w-full rounded-3xl object-cover shadow-lg"
+                />
+
+              </div>
+
+              <img
+                src={aboutus3}
+                alt="Facilitator"
+                className="h-full min-h-[545px] w-full rounded-3xl object-cover shadow-xl"
+              />
+
+            </div>
+
+            {/* Content */}
+            <div>
+
+              <span className="eyebrow">
+                About Us
+              </span>
+
+              <h2 className="display-h2 mt-5 max-w-xl">
+                Learning experiences shaped around people,
+                performance, and purpose.
+              </h2>
+
+              <p className="mt-8 text-muted-foreground leading-8">
+                Aarambh Resource Management Solutions is a Learning &
+                Development consulting practice that helps organisations
+                build capability through purposeful learning design,
+                digital learning, facilitated interventions and
+                experiential programs.
+              </p>
+
+              <p className="mt-6 text-muted-foreground leading-8">
+                We work closely with organisations to understand business
+                context, identify capability needs and design practical,
+                engaging learning solutions that people can immediately
+                apply at work.
+              </p>
+
+              <p className="mt-6 text-muted-foreground leading-8">
+                Our expertise spans instructional design, eLearning,
+                ILT content, leadership development, behavioural skills,
+                sales capability, BFSI domain learning, offsites and
+                keynote sessions—creating learning that delivers
+                measurable workplace impact.
+              </p>
+
+              <Button asChild className="mt-10">
+                <Link to="/about">
+                  Learn More About Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
       {/* INDUSTRIES */}
       <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
@@ -591,54 +735,81 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CLIENT LOGOS — sliding carousel, one row, manual + arrow navigation */}
+      {/* CLIENTS */}
       <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        className="section hero-bg relative overflow-hidden bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg2})` }}
       >
         <div className="container-px mx-auto max-w-7xl">
-          <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Trusted by L&amp;D and business leaders across industries
-          </p>
 
-          <div className="mt-10 relative flex items-center gap-3">
-            <button
-              onClick={() => scrollPartners("left")}
-              className="hidden sm:flex h-10 w-10 shrink-0 rounded-full border border-border bg-background items-center justify-center hover:bg-muted transition"
-              aria-label="Show previous partners"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
+          <div className="text-center mb-12">
+            <span className="eyebrow justify-center">
+              Organisations We've Partnered With
+            </span>
 
-            <div
-              ref={partnersRef}
-              className="flex-1 flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-6"
-            >
-              {partnerLogos.map((logo) => (
-                <div
-                  key={logo.name}
-                  data-carousel-card
-                  className="group shrink-0 snap-start flex items-center justify-center h-20 w-36 sm:w-40 px-4"
-                  style={{ perspective: "600px" }}
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    loading="lazy"
-                    className="max-h-12 max-w-full object-contain transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.15] group-hover:-translate-y-1 group-hover:drop-shadow-[0_12px_16px_rgba(0,0,0,0.18)]"
-                  />
-                </div>
-              ))}
-            </div>
+            <h2 className="display-h2 mt-3">
+              Trusted Across Industries
+            </h2>
 
-            <button
-              onClick={() => scrollPartners("right")}
-              className="hidden sm:flex h-10 w-10 shrink-0 rounded-full border border-border bg-background items-center justify-center hover:bg-muted transition"
-              aria-label="Show next partners"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+              We've partnered with organisations across banking, education,
+              consulting, manufacturing and healthcare to build capability through
+              meaningful learning experiences.
+            </p>
           </div>
+
+          {/* BFSI */}
+          <ClientCategory
+            title="BFSI & Insurance"
+            logos={[
+              partnerLogo12,
+              partnerlogo15,
+              partnerLogo8,
+              partnerLogo4,
+              partnerLogo10,
+
+
+            ]}
+          />
+
+          {/* Education */}
+          <ClientCategory
+            title="Education & Institutions"
+            logos={[
+              partnerlogo17,
+              partnerLogo13,
+              partnerLogo2,
+              partnerlogo16,
+
+
+
+            ]}
+          />
+
+          {/* Corporate */}
+          <ClientCategory
+            title="Corporate & Consulting"
+            logos={[
+              partnerLogo1,
+              partnerLogo5,
+              partnerLogo9,
+              partnerLogo3,
+              partnerLogo6,
+              partnerLogo11,
+              partnerLogo7,
+              partnerlogo14
+            ]}
+          />
+
+          <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center">
+            <Quote className="mx-auto h-8 w-8 text-primary mb-3" />
+
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              We value every partnership and the trust our clients place in us.
+              Together, we create learning that drives real workplace performance.
+            </p>
+          </div>
+
         </div>
       </section>
 
