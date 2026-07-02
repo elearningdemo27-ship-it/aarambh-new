@@ -144,7 +144,7 @@ function SolutionsPage() {
         style={{ backgroundImage: `url(${heroBg})` }}
       >
         <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
-          <span className="eyebrow">Our solutions</span>
+          <span className="eyebrow">Our services</span>
           <h1 className="display-h1 mt-5 max-w-4xl">
             A complete L&amp;D partner — from <em className="text-primary not-italic">strategy</em> to{" "}
             <em className="text-primary not-italic">delivery</em>.

@@ -801,14 +801,16 @@ function HomePage() {
             ]}
           />
 
-          <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center">
-            <Quote className="mx-auto h-8 w-8 text-primary mb-3" />
-
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              We value every partnership and the trust our clients place in us.
-              Together, we create learning that drives real workplace performance.
-            </p>
-          </div>
+          <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6">
+  <div className="flex items-start justify-center gap-4 max-w-3xl mx-auto">
+    <Quote className="h-6 w-6 text-primary shrink-0 mt-1 scale-x-[-1]" />
+    <p className="text-muted-foreground text-center">
+      We value every partnership and the trust our clients place in us.
+      Together, we create learning that drives real workplace performance.
+    </p>
+    <Quote className="h-6 w-6 text-primary shrink-0 mt-1" />
+  </div>
+</div>
 
         </div>
       </section>
@@ -922,10 +924,9 @@ function HomePage() {
         style={{ backgroundImage: `url(${heroBg2})` }}
       >
         <div className="container-px mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 shadow-elegant">
+          <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-5 md:p-8 shadow-elegant">
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
-              style={{ backgroundImage: `url(${heroBg})` }}
             />
             <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/30 blur-3xl" />
 
