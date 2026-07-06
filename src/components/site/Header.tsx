@@ -9,9 +9,9 @@ const NAV = [
   { to: "/about", label: "About Us" },
   { to: "/solutions", label: "Services" },
   { to: "/success-stories", label: "Success Stories" },
-  {to: "/insights-resources", label: "Insights & resources" },
+  { to: "/insights-resources", label: "Insights & Resources" },
   { to: "/blog", label: "Blog" },
-  { to: "/contact", label: "Contact Us" },
+  // { to: "/contact", label: "Contact Us" },
 ] as const;
 
 export function Header() {
@@ -27,11 +27,10 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 backdrop-blur-md transition-all ${
-        scrolled ? "bg-background/85 border-b border-border" : "bg-background/60"
-      }`}
+      className={`sticky top-0 z-50 backdrop-blur-md transition-all ${scrolled ? "bg-background/85 border-b border-border" : "bg-background/60"
+        }`}
     >
-      <div className="container-px mx-auto max-w-7xl flex items-center justify-between ">
+      <div className="container-px mx-auto  flex items-center justify-between ">
         <Logo />
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((item) => (
@@ -61,7 +60,7 @@ export function Header() {
       </div>
       {open && (
         <div className="lg:hidden border-t border-border bg-background">
-          <nav className="container-px mx-auto max-w-7xl py-4 flex flex-col gap-1">
+          <nav className="container-px mx-auto py-4 flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
                 key={item.to}
