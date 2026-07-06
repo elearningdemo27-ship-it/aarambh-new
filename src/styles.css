@@ -139,8 +139,8 @@
   .container-px { padding-left: 1.25rem; padding-right: 1.25rem; }
   @media (min-width: 768px) { .container-px { padding-left: 2rem; padding-right: 2rem; } }
 
-  .section { padding-top: 5rem; padding-bottom: 5rem; }
-  @media (min-width: 768px) { .section { padding-top: 7rem; padding-bottom: 7rem; } }
+  .section { padding-top: 3rem; padding-bottom: 3rem; }
+  @media (min-width: 768px) { .section { padding-top: 4rem; padding-bottom: 4rem; } }
 
   .eyebrow {
     display: inline-flex; align-items: center; gap: .5rem;

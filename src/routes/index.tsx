@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import demoIcon from "@/assets/icons/icons-demo.svg";
 import hero1 from "@/assets/hero/hero-1.png";
 import hero2 from "@/assets/hero/hero-2.png";
 import hero3 from "@/assets/hero/hero-3.png";
@@ -53,9 +53,9 @@ import partnerlogo17 from "@/assets/partners/chandigarh-univercity.png";
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
 import serviceDesign from "@/assets/service/service-design.jpeg";
 import serviceAi from "@/assets/service/service-ai.jpeg";
-import serviceFacilitation from "@/assets/service/service-facilitation.jpeg";
+import serviceFacilitation from "@/assets/service/service-facilitation.png";
 import serviceOffsite from "@/assets/service/service-offsite.jpeg";
-import serviceKeynote from "@/assets/service/service-keynote.jpeg";
+import serviceKeynote from "@/assets/service/service-keynote.png";
 import heroBg from "@/assets/minimal-bg.png";
 import heroBg2 from "@/assets/minimal-bg2.png";
 import impactBg from "@/assets/bg-compnies-growth.png";
@@ -158,13 +158,11 @@ const services = [
 ] as const;
 
 const impact = [
-  { value: "30+", label: "Founder's years in L&D & capability-building" },
-  { value: "15+", label: "Years in digital learning & eLearning" },
-  { value: "300+", label: "Workshops delivered" },
-  { value: "1.3L+", label: "Learner man-hours impacted" },
-  { value: "250+", label: "eLearning hours created" },
-  { value: "Since 2019", label: "ARMS in practice" },
-  { value: "Multi", label: "Industries served across India" },
+  { value: "30+", label: "Founder's years in\nL&D & capability-building" },
+  { value: "15+", label: "Years in digital\nlearning & eLearning" },
+  { value: "300+", label: "Workshops\ndelivered" },
+  { value: "1.3L+", label: "Learner man-hours\nimpacted" },
+  { value: "250+", label: "eLearning hours\ncreated" },
 ];
 
 // Partner/client logos shown in the sliding carousel below the impact numbers.
@@ -284,7 +282,7 @@ function ClientCategory({
 
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
 
         {logos.map((logo, index) => (
           <div
@@ -295,11 +293,11 @@ function ClientCategory({
               border
               border-border
               bg-background
-              h-28
+              h-20
               flex
               items-center
               justify-center
-              p-5
+              p-3
               transition-all
               duration-300
               hover:-translate-y-1
@@ -311,7 +309,7 @@ function ClientCategory({
               src={logo}
               alt=""
               className="
-                max-h-16
+                max-h-14
                 w-auto
                 object-contain
                 transition-transform
@@ -460,25 +458,39 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-background">
-        <div className="container-px mx-auto max-w-7xl py-6">
-          <div className="grid gap-5 md:grid-cols-5 items-center">
-            <div className="flex items-center gap-2 font-semibold text-primary">
-              <Sparkles className="h-4 w-4" />
-              <span>Why teams choose Aarambh</span>
-            </div>
+      {/* IMPACT NUMBERS */}
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-primary-foreground"
+        style={{ backgroundImage: `url(${impactBg})` }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{ background: "color-mix(in oklab, var(--primary) 85%, black 60%)", opacity: 0.82 }}
+        />
 
-            {[
-              "Practitioner-led learning design",
-              "Deep BFSI, sales & leadership expertise",
-              "Digital, AI-enabled & experiential delivery",
-              "Measurable workplace impact",
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-3 text-sm text-foreground">
-                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>{item}</span>
+        <div className="relative  mx-auto max-w-7xl min-h-[330px] flex flex-col justify-between py-10">
+          <div className="pt-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center place-items-center">
+            {impact.map((s) => (
+              <div key={s.label} className="flex flex-col items-center justify-start min-w-[150px]">
+                <div className="font-display text-3xl md:text-4xl lg:text-5xl text-center">
+                  {s.value}
+                </div>
+
+                <div className="mt-4 text-xs uppercase tracking-widest text-primary-foreground/70 text-center leading-snug max-w-[190px]">
+                  {s.label.split("\n").map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className=" flex items-center justify-center gap-3 text-xs text-primary-foreground/60">
+            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
+            <p>Experience figures reflect founder-led and delivered work. ARMS was established in 2019.</p>
+            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
           </div>
         </div>
       </section>
@@ -491,7 +503,7 @@ function HomePage() {
         <div className="absolute left-0 top-0 h-56 w-56 rounded-full bg-primary/5 blur-3xl" />
         <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
 
-        <div className="container-px relative mx-auto max-w-7xl">
+        <div className="container-px relative mx-auto max-w-[1536px]">
 
           <div className="grid lg:grid-cols-2 gap-14 items-center">
 
@@ -499,7 +511,6 @@ function HomePage() {
             <div className="grid grid-cols-[0.9fr_1.1fr] gap-5">
 
               <div className="flex flex-col gap-5">
-
                 <img
                   src={aboutus1}
                   alt="Learning workshop"
@@ -523,18 +534,20 @@ function HomePage() {
             </div>
 
             {/* Content */}
-            <div>
+            <div className="w-full max-w-none">
 
               <span className="eyebrow">
                 About Us
               </span>
 
-              <h2 className="display-h2 mt-5 max-w-xl">
-                Learning experiences shaped around people,
-                performance, and purpose.
+              <h2 className="display-h2 mt-3 max-w-full">
+                <span>Learning Experiences </span>
+                <span className="text-primary">Shaped Around People,</span>
+                <br />
+                <span>Performance, and </span>
+                <span className="text-primary">Purpose.</span>
               </h2>
-
-              <p className="mt-8 text-muted-foreground leading-8">
+              <p className="mt-6 text-muted-foreground leading-6">
                 Aarambh Resource Management Solutions is a Learning &
                 Development consulting practice that helps organisations
                 build capability through purposeful learning design,
@@ -542,14 +555,14 @@ function HomePage() {
                 experiential programs.
               </p>
 
-              <p className="mt-6 text-muted-foreground leading-8">
+              <p className="mt-4 text-muted-foreground leading-6">
                 We work closely with organisations to understand business
                 context, identify capability needs and design practical,
                 engaging learning solutions that people can immediately
                 apply at work.
               </p>
 
-              <p className="mt-6 text-muted-foreground leading-8">
+              <p className="mt-4 text-muted-foreground leading-6">
                 Our expertise spans instructional design, eLearning,
                 ILT content, leadership development, behavioural skills,
                 sales capability, BFSI domain learning, offsites and
@@ -557,7 +570,7 @@ function HomePage() {
                 measurable workplace impact.
               </p>
 
-              <Button asChild className="mt-10">
+              <Button asChild className="mt-6">
                 <Link to="/about">
                   Learn More About Us
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -570,25 +583,29 @@ function HomePage() {
 
         </div>
       </section>
-     
+
 
       {/* DIFFERENTIATORS */}
       <section
-        className="py-10  hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        className="py-16 hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="container-px mx-auto max-w-7xl ">
+        <div className="container-px mx-auto max-w-7xl">
 
-          <div className=" max-w-3x">
-            <span className="eyebrow  text-primary">WHO WE ARE</span>
-            <h1 className="display-h2 mt-2">
-              <span >What Makes Us </span><span className="text-primary">Different</span>
+          <div className="">
+            <span className="eyebrow justify-center text-primary">WHO WE ARE</span>
+
+            <h1 className="display-h2 mt-3">
+              <span>What Makes Us </span>
+              <span className="text-primary">Different</span>
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+
+            <p className="mt-3 text-lg text-muted-foreground">
               Practitioner-led learning. Designed for real workplace impact.
             </p>
           </div>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+
+          <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {differentiators.map((d, i) => (
               <motion.div
                 key={d.title}
@@ -596,37 +613,33 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative rounded-2xl bg-background p-7 shadow-elegant hover:shadow-elegant-lg transition-all duration-300 hover:-translate-y-1 border border-border/50"
+                className="group relative overflow-hidden rounded-2xl bg-white px-5 py-7 text-center shadow-[0_10px_35px_rgba(88,28,135,0.12)] border border-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_45px_rgba(88,28,135,0.18)]"
               >
-                {/* Accent line */}
-                <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-primary/40 via-primary to-primary/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute right-0 top-0 h-0 w-0 border-t-[36px] border-l-[36px] border-t-primary border-l-transparent" />
 
-                {/* Number */}
-                <div className="text-4xl font-display font-bold text-primary/10 group-hover:text-primary/20 transition-colors duration-300">
-                  {(i + 1).toString().padStart(2, "0")}
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                  <img
+                    src={demoIcon}
+                    alt=""
+                    className="h-11 w-11 object-contain"
+                  />
                 </div>
 
-                {/* Icon */}
-                <div className="mt-3 h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                  {i === 0 && <Users2 className="h-5 w-5" />}
-                  {i === 1 && <BookOpen className="h-5 w-5" />}
-                  {i === 2 && <Mic2 className="h-5 w-5" />}
-                  {i === 3 && <Banknote className="h-5 w-5" />}
-                  {i === 4 && <Cpu className="h-5 w-5" />}
-                </div>
+                <h3 className="mt-5 text-lg font-bold leading-tight text-foreground">
+                  {d.title}
+                </h3>
 
-                <div className="mt-4 text-lg font-semibold leading-tight">{d.title}</div>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.body}</p>
+                <div className="mx-auto mt-3 h-1 w-10 rounded-full bg-primary" />
 
-                {/* Decorative dot pattern */}
-                <div className="absolute bottom-4 right-4 flex gap-1 opacity-20">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary/40" />
-                </div>
+                <p className="mt-5 text-sm text-muted-foreground leading-6">
+                  {d.body}
+                </p>
+
+                <div className="absolute bottom-0 left-0 h-1.5 w-full bg-primary" />
               </motion.div>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -640,7 +653,7 @@ function HomePage() {
             <div>
               <span className="eyebrow">Our solutions</span>
               <h2 className="display-h2 mt-3 max-w-2xl">
-                A full L&amp;D partner across strategy, design and delivery
+                A full L&amp;D partner across <span className="text-primary">strategy, </span>design and delivery
               </h2>
             </div>
             <Button asChild variant="outline">
@@ -681,60 +694,8 @@ function HomePage() {
         </div>
       </section>
 
-      {/* IMPACT NUMBERS */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-primary-foreground"
-        style={{ backgroundImage: `url(${impactBg})` }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{ background: "color-mix(in oklab, var(--primary) 85%, black 60%)", opacity: 0.82 }}
-        />
-        <div className="relative container-px mx-auto max-w-7xl pt-20 pb-15">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 text-center">
-            {impact.map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-3xl md:text-4xl lg:text-5xl">{s.value}</div>
-                <div className="mt-4 text-xs uppercase tracking-widest text-primary-foreground/70">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 flex items-center justify-center gap-3 text-xs text-primary-foreground/60">
-            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
-            <p>Experience figures reflect founder-led and delivered work. ARMS was established in 2019.</p>
-            <span className="h-1 w-1 rounded-full bg-primary-foreground/40" />
-          </div>
-        </div>
-      </section>
- {/* INDUSTRIES */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg2})` }}
-      >
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="eyebrow">Industries we serve</span>
-              <h2 className="display-h2 mt-3 max-w-2xl">
-                Learning designed for the realities of your industry
-              </h2>
-            </div>
-            <p className="md:max-w-sm text-muted-foreground">
-              From BFSI to manufacturing, our programs are rooted in domain context — not generic templates.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map(({ icon: Icon, label }) => (
-              <div key={label} className="card-elegant p-6 flex flex-col items-center text-center">
-                <Icon className="h-7 w-7 text-primary" />
-                <div className="mt-3 text-sm font-medium">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
+
       {/* CLIENTS */}
       <section
         className="section hero-bg relative overflow-hidden bg-cover bg-no-repeat"
@@ -802,15 +763,15 @@ function HomePage() {
           />
 
           <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6">
-  <div className="flex items-start justify-center gap-4 max-w-3xl mx-auto">
-    <Quote className="h-6 w-6 text-primary shrink-0 mt-1 scale-x-[-1]" />
-    <p className="text-muted-foreground text-center">
-      We value every partnership and the trust our clients place in us.
-      Together, we create learning that drives real workplace performance.
-    </p>
-    <Quote className="h-6 w-6 text-primary shrink-0 mt-1" />
-  </div>
-</div>
+            <div className="flex items-start justify-center gap-4 max-w-3xl mx-auto">
+              <Quote className="h-6 w-6 text-primary shrink-0 mt-1 scale-x-[-1]" />
+              <p className="text-muted-foreground text-center">
+                We value every partnership and the trust our clients place in us.
+                Together, we create learning that drives real workplace performance.
+              </p>
+              <Quote className="h-6 w-6 text-primary shrink-0 mt-1" />
+            </div>
+          </div>
 
         </div>
       </section>
@@ -830,7 +791,7 @@ function HomePage() {
             </p>
           </div>
 
-          <div className="relative mt-10 px-14">
+          <div className="relative mt-10 px-0 md:px-14">
             <button
               onClick={() => scrollTestimonials("left")}
               className="absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"
@@ -848,25 +809,27 @@ function HomePage() {
                 <div
                   key={`${t.name}-${index}`}
                   data-carousel-card
-                  className="card-elegant relative shrink-0 snap-center w-full p-6 md:p-9"
+                  className="card-elegant relative shrink-0 snap-center w-full p-5 sm:p-6 md:p-9"
                 >
-                  <div className="grid gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-center">
+                  <div className="grid gap-6 md:gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-center">
                     <div>
-                      <div className="flex items-center gap-3">
-                        <Quote className="h-10 w-10 fill-primary text-primary" />
+                      <div className="flex flex-wrap items-center gap-3">
+                        <Quote className="h-8 w-8 md:h-10 md:w-10 fill-primary text-primary shrink-0" />
 
-                        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                          <Users2 className="h-3.5 w-3.5" />
-                          {t.tag}
+                        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] sm:text-xs font-semibold text-primary">
+                          <Users2 className="h-3.5 w-3.5 shrink-0" />
+                          <span>{t.tag}</span>
                         </div>
                       </div>
 
-                      <p className="mt-6 max-w-2xl text-sm md:text-base leading-relaxed text-foreground/90">
+                      <p className="mt-5 max-w-2xl text-sm md:text-base leading-7 md:leading-relaxed text-foreground/90">
                         {t.quote}
                       </p>
 
-                      <div className="mt-7">
-                        <div className="text-xl font-semibold text-primary">{t.name}</div>
+                      <div className="mt-6">
+                        <div className="text-lg md:text-xl font-semibold text-primary">
+                          {t.name}
+                        </div>
                         <div className="mt-1 text-sm text-muted-foreground">
                           {t.role}, {t.org}
                         </div>
@@ -878,12 +841,12 @@ function HomePage() {
                         <img
                           src={t.image}
                           alt={t.name}
-                          className="h-52 w-52 rounded-3xl object-cover shadow-elegant"
+                          className="h-36 w-36 sm:h-44 sm:w-44 md:h-52 md:w-52 rounded-3xl object-cover shadow-elegant"
                           loading="lazy"
                         />
                       ) : (
-                        <div className="flex h-52 w-52 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-elegant">
-                          <Users2 className="h-20 w-20" />
+                        <div className="flex h-36 w-36 sm:h-44 sm:w-44 md:h-52 md:w-52 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-elegant">
+                          <Users2 className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20" />
                         </div>
                       )}
                     </div>
@@ -901,7 +864,7 @@ function HomePage() {
             </button>
           </div>
 
-          <div className="mt-2 flex items-center justify-between px-6 text-xs text-muted-foreground">
+         <div className="mt-2 flex items-center justify-center sm:justify-between px-1 sm:px-6 text-xs text-muted-foreground">
             <div>
               <span className="font-semibold text-primary">
                 {String(activeTestimonial + 1).padStart(2, "0")}

@@ -32,9 +32,9 @@ import heroBg3 from "@/assets/minimal-bg2.png";
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
 import serviceDesign from "@/assets/service/service-design.jpeg";
 import serviceAi from "@/assets/service/service-ai.jpeg";
-import serviceFacilitation from "@/assets/service/service-facilitation.jpeg";
+import serviceFacilitation from "@/assets/service/service-facilitation.png";
 import serviceOffsite from "@/assets/service/service-offsite.jpeg";
-import serviceKeynote from "@/assets/service/service-keynote.jpeg";
+import serviceKeynote from "@/assets/service/service-keynote.png";
 
 export const Route = createFileRoute("/solutions")({
   head: () => ({

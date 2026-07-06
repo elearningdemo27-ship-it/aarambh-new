@@ -27,7 +27,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 backdrop-blur-md transition-all ${scrolled ? "bg-background/85 border-b border-border" : "bg-background/60"
+      className={`sticky py-1 top-0 z-50 backdrop-blur-md transition-all ${scrolled ? "bg-background/85 border-b border-border" : "bg-background/60"
         }`}
     >
       <div className="container-px mx-auto  flex items-center justify-between ">
@@ -37,7 +37,7 @@ export function Header() {
             <Link
               key={item.to}
               to={item.to}
-              className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md"
+              className="px-3 py-3 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md"
               activeProps={{ className: "text-primary" }}
               activeOptions={{ exact: item.to === "/" }}
             >
