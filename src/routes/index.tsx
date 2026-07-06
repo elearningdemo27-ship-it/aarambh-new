@@ -58,6 +58,7 @@ import serviceOffsite from "@/assets/service/service-offsite.jpeg";
 import serviceKeynote from "@/assets/service/service-keynote.png";
 import heroBg from "@/assets/minimal-bg.png";
 import heroBg2 from "@/assets/minimal-bg2.png";
+import heroBg3 from "@/assets/minimal-bg3.png";
 import impactBg from "@/assets/bg-compnies-growth.png";
 import aboutus1 from "@/assets/aboutus/aboutus1.png";
 import aboutus2 from "@/assets/aboutus/aboutus2.png";
@@ -900,7 +901,7 @@ function HomePage() {
                 </span>
                 <div className="mt-2 h-0.5 w-10 bg-gold" />
                 <h3 className="display-h2 mt-5">
-                  Have a learning need? Let's build the right solution together.
+                  Have a learning need?<br/>  Let's build the right solution together.
                 </h3>
                 <p className="mt-4 text-primary-foreground/80 max-w-xl leading-relaxed">
                   From digital learning and facilitated workshops to capability journeys
