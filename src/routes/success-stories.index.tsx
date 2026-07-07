@@ -83,21 +83,21 @@ function StoriesListPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Search stories..." value={q} onChange={(e) => setQ(e.target.value)} className="pl-9" />
             </div>
-            <div className="flex gap-1 flex-wrap">
-              {categories.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setCat(c)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${
-                    cat === c
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-card text-muted-foreground border-border hover:border-primary/40"
-                  }`}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
+            <div className="flex gap-1 overflow-x-auto scrollbar-none whitespace-nowrap -mx-1 px-1">
+  {categories.map((c) => (
+    <button
+      key={c}
+      onClick={() => setCat(c)}
+      className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border transition ${
+        cat === c
+          ? "bg-primary text-primary-foreground border-primary"
+          : "bg-card text-muted-foreground border-border hover:border-primary/40"
+      }`}
+    >
+      {c}
+    </button>
+  ))}
+</div>
           </div>
 
           <div className="mt-10">

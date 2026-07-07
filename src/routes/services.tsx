@@ -21,6 +21,8 @@ import {
   Users2,
   Building2,
   Award,
+  Search,
+  type LucideIcon,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
@@ -73,6 +75,13 @@ const valueBadges = [
   },
 ] as const;
 
+type ApproachStep = {
+  n: string;
+  icon: LucideIcon;
+  title: string;
+  text: string;
+};
+
 const services = [
   {
     id: "strategy",
@@ -104,12 +113,12 @@ const services = [
       { icon: TrendingUp, title: "Impact Measurement", desc: "Connect learning takeaways with application and performance." },
     ],
     approachSteps: [
-      { title: "Understand the business context and performance need" },
-      { title: "Define learner profiles, audience needs, and success expectations" },
-      { title: "Design the learning journey across roles, levels, and stages" },
-      { title: "Structure content, engagement methods, and practice opportunities" },
-      { title: "Align assessments, application, and impact measurement" },
-    ],
+      { n: "1", icon: Search, title: "Discover", text: "Understand the business context and performance need" },
+      { n: "2", icon: Users2, title: "Define", text: "Define learner profiles, audience needs, and success expectations" },
+      { n: "3", icon: RouteIcon, title: "Design", text: "Design the learning journey across roles, levels, and stages" },
+      { n: "4", icon: Layers, title: "Develop", text: "Structure content, engagement methods, and practice opportunities" },
+      { n: "5", icon: TrendingUp, title: "Deliver Impact", text: "Align assessments, application, and impact measurement" },
+    ] as ApproachStep[],
     ctaTitle: "Need a learning strategy that turns content into capability?",
     ctaBody: "Let's design learning journeys that are structured, engaging, and aligned to business outcomes.",
     ctaButtonLabel: "Talk to Us",
@@ -144,14 +153,14 @@ const services = [
       { icon: Globe2, title: "HTML5 Conversion & Localization", desc: "Modernise legacy content and adapt it across languages and devices." },
     ],
     approachSteps: [
-      { title: "Understand the audience, business context, and learning objective" },
-      { title: "Structure the learning journey — session-wise or screen-wise" },
-      { title: "Design content using adult learning principles, with clear visual treatment" },
-      { title: "Build activities and exercises for engagement and application" },
-      { title: "Create facilitator-friendly guides for consistent delivery" },
-      { title: "Develop learner resources that support recall, practice, and on-the-job use" },
-      { title: "Align assessments and takeaways to desired performance outcomes" },
-    ],
+      { n: "1", icon: Search, title: "Discover", text: "Understand the audience, business context, and learning objective" },
+      { n: "2", icon: RouteIcon, title: "Structure", text: "Structure the learning journey — session-wise or screen-wise" },
+      { n: "3", icon: Layers, title: "Design", text: "Design content using adult learning principles, with clear visual treatment" },
+      { n: "4", icon: ClipboardCheck, title: "Build", text: "Build activities and exercises for engagement and application" },
+      { n: "5", icon: FileText, title: "Guide", text: "Create facilitator-friendly guides for consistent delivery" },
+      { n: "6", icon: BookOpen, title: "Develop", text: "Develop learner resources that support recall, practice, and on-the-job use" },
+      { n: "7", icon: Target, title: "Align", text: "Align assessments and takeaways to desired performance outcomes" },
+    ] as ApproachStep[],
     ctaTitle: "Need content that's built to be used, not just completed?",
     ctaBody: "Let's create ILT, digital, and blended experiences that help trainers deliver better and learners apply more.",
     ctaButtonLabel: "Discuss Your Requirement",
@@ -188,15 +197,15 @@ const services = [
       { icon: Globe2, title: "AI Learning Tools", desc: "Learning tools that support decision making, communication and productivity." },
     ],
     approachSteps: [
-      { title: "Understand the learner role, task requirement, and workplace challenge" },
-      { title: "Identify where AI can support performance, practice, or productivity" },
-      { title: "Design simple, usable job aids, prompts, and learning tools" },
-      { title: "Create prompt-based workflows for common tasks and scenarios" },
-      { title: "Build AI-supported practice opportunities for skill development" },
-      { title: "Review outputs for accuracy, relevance, tone, and context" },
-      { title: "Ensure human-led validation for quality, ethics, and learning impact" },
-      { title: "Align AI-enabled learning solutions to business and performance outcomes" },
-    ],
+      { n: "1", icon: Search, title: "Understand", text: "Understand the learner role, task requirement, and workplace challenge" },
+      { n: "2", icon: Lightbulb, title: "Identify", text: "Identify where AI can support performance, practice, or productivity" },
+      { n: "3", icon: Layers, title: "Design", text: "Design simple, usable job aids, prompts, and learning tools" },
+      { n: "4", icon: MessageSquare, title: "Build", text: "Create prompt-based workflows for common tasks and scenarios" },
+      { n: "5", icon: Target, title: "Practise", text: "Build AI-supported practice opportunities for skill development" },
+      { n: "6", icon: ClipboardCheck, title: "Review", text: "Review outputs for accuracy, relevance, tone, and context" },
+      { n: "7", icon: UserCheck, title: "Validate", text: "Ensure human-led validation for quality, ethics, and learning impact" },
+      { n: "8", icon: TrendingUp, title: "Align", text: "Align AI-enabled learning solutions to business and performance outcomes" },
+    ] as ApproachStep[],
     ctaTitle: "Need AI-enabled learning solutions that are practical, responsible, and performance-focused?",
     ctaBody: "Let's design AI-enabled learning tools and experiences that truly support performance.",
     ctaButtonLabel: "Talk to Us",
@@ -231,11 +240,11 @@ const services = [
       { icon: ClipboardCheck, title: "Supporting Interventions", desc: "Training need analysis, assessment centres, training audits, and reinforcement sessions." },
     ],
     approachSteps: [
-      { title: "Context — understanding the business need and learner reality" },
-      { title: "Engagement — creating participation through real interaction and reflection" },
-      { title: "Application — connecting learning to real workplace situations" },
-      { title: "Impact — driving clear takeaways and behaviour change" },
-    ],
+      { n: "1", icon: Building2, title: "Context", text: "Understanding the business need and learner reality" },
+      { n: "2", icon: Users2, title: "Engagement", text: "Creating participation through real interaction and reflection" },
+      { n: "3", icon: Target, title: "Application", text: "Connecting learning to real workplace situations" },
+      { n: "4", icon: TrendingUp, title: "Impact", text: "Driving clear takeaways and behaviour change" },
+    ] as ApproachStep[],
     ctaTitle: "Ready to build learning experiences that your teams can apply with confidence?",
     ctaBody: "Let's design training interventions that are practical, engaging, and outcome-driven.",
     ctaButtonLabel: "Discuss Your Training Requirement",
@@ -271,13 +280,13 @@ const services = [
       { icon: Mountain, title: "Customised Outbound Journeys", desc: "Tailored around a specific business theme or team outcome." },
     ],
     approachSteps: [
-      { title: "Understand what the organisation wants the team to think, feel, or do differently" },
-      { title: "Design experiences, activities, or environments that help the team experience that shift" },
-      { title: "Facilitate meaningful conversations that help participants reflect and draw insights" },
-      { title: "Connect the learning back to everyday behaviours, team dynamics, and expectations" },
-      { title: "Build programs that strengthen trust, collaboration, and alignment — with practical takeaways" },
-      { title: "Create practical takeaways that participants can carry back into their roles and teams" },
-    ],
+      { n: "1", icon: Search, title: "Understand", text: "Understand what the organisation wants the team to think, feel, or do differently" },
+      { n: "2", icon: Layers, title: "Design", text: "Design experiences, activities, or environments that help the team experience that shift" },
+      { n: "3", icon: MessageSquare, title: "Facilitate", text: "Facilitate meaningful conversations that help participants reflect and draw insights" },
+      { n: "4", icon: RouteIcon, title: "Connect", text: "Connect the learning back to everyday behaviours, team dynamics, and expectations" },
+      { n: "5", icon: Users2, title: "Build", text: "Build programs that strengthen trust, collaboration, and alignment — with practical takeaways" },
+      { n: "6", icon: Award, title: "Takeaway", text: "Create practical takeaways that participants can carry back into their roles and teams" },
+    ] as ApproachStep[],
     ctaTitle: "Ready to design an offsite that drives reflection, trust, and workplace impact?",
     ctaBody: "Let's create meaningful team experiences people remember and apply back at work.",
     ctaButtonLabel: "Design an Offsite With Us",
@@ -313,11 +322,11 @@ const services = [
       { icon: Sparkles, title: "Team Energy & Motivation", desc: "High-impact sessions for conferences, kick-offs, and leadership meets." },
     ],
     approachSteps: [
-      { title: "Story — real experiences that create emotional connection" },
-      { title: "Insight — lessons drawn from the Army, leadership, and corporate life" },
-      { title: "Reflection — questions that help the audience connect the message to themselves and their teams" },
-      { title: "Action — clear takeaways that participants can apply at work" },
-    ],
+      { n: "1", icon: Mic2, title: "Story", text: "Real experiences that create emotional connection" },
+      { n: "2", icon: Lightbulb, title: "Insight", text: "Lessons drawn from the Army, leadership, and corporate life" },
+      { n: "3", icon: MessageSquare, title: "Reflection", text: "Questions that help the audience connect the message to themselves and their teams" },
+      { n: "4", icon: Target, title: "Action", text: "Clear takeaways that participants can apply at work" },
+    ] as ApproachStep[],
     ctaTitle: "Ready to bring a keynote that inspires, connects, and drives action?",
     ctaBody: "Let's design a session that energises your audience and leaves them with insights they can act on.",
     ctaButtonLabel: "Invite Us for a Keynote",
@@ -477,54 +486,14 @@ function ServicesPage() {
               </div>
             </div>
 
-            {/* ── Our Approach ── */}
-            <div className="mt-24 rounded-3xl bg-primary/5 border border-primary/10 p-8 md:p-12">
-              <div className="text-center max-w-2xl mx-auto">
-                <h3 className="display-h2">Our Approach</h3>
-                <p className="mt-3 text-muted-foreground">
-                  A structured process that turns business needs into meaningful learning architecture.
-                </p>
-              </div>
+            {/* ── Our Approach — animated dashed journey map ── */}
+            <ApproachJourney steps={s.approachSteps} />
 
-              <div className="relative mt-12 max-w-3xl mx-auto">
-                {/* dashed connector spine */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-primary/25 hidden md:block" />
+          </div>
 
-                <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
-                  {s.approachSteps.map((step, i) => (
-                    <div
-                      key={step.title}
-                      className={`flex items-start gap-4 ${i % 2 === 1 ? "md:mt-16" : ""}`}
-                    >
-                      <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-display font-semibold shrink-0">
-                        {i + 1}
-                      </div>
-                      <p className="text-sm md:text-base text-foreground/90 leading-relaxed pt-1.5">
-                        {step.title}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* value badges */}
-              <div className="mt-14 grid sm:grid-cols-3 gap-6 pt-10 border-t border-primary/10">
-                {valueBadges.map(({ icon: BadgeIcon, title, body }) => (
-                  <div key={title} className="flex items-start gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shrink-0">
-                      <BadgeIcon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-sm">{title}</div>
-                      <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Closing CTA banner ── */}
-            <div className="mt-16 relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-8 md:p-12 shadow-elegant">
+          {/* ── Closing CTA banner ── */}
+          <div className="container-px mx-auto max-w-7xl pb-24">
+            <div className="mt-2 relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-8 md:p-12 shadow-elegant">
               <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gold/20 blur-3xl" />
               <div className="relative flex flex-col md:flex-row md:items-center gap-8">
                 <div className="h-16 w-16 rounded-2xl bg-primary-foreground/10 flex items-center justify-center shrink-0">
@@ -545,10 +514,142 @@ function ServicesPage() {
                 </Button>
               </div>
             </div>
-
           </div>
         </section>
       ))}
     </SiteLayout>
+  );
+}
+
+/* -------------------- Our Approach — journey map (ported from /solutions) -------------------- */
+/*
+  Same visual language as the Solutions page: dotted background texture, soft
+  blurred glow circles, a horizontal zigzag of pill-shaped step cards linked by
+  a dashed spine on desktop, and a vertical dashed timeline with numbered
+  avatar circles on mobile/tablet. Reused across every service section, driven
+  by that service's own approachSteps (icon + title + text).
+*/
+
+function ApproachJourney({ steps }: { steps: readonly ApproachStep[] }) {
+  return (
+    <div className="mt-24 relative overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary-soft/60 via-background to-primary-soft/40 p-6 md:p-12">
+      {/* decorative dots */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, var(--color-primary, #5b2c81) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+      <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
+      <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+
+      <div className="relative text-center max-w-3xl mx-auto">
+        <h3 className="display-h2 text-primary">Our Approach</h3>
+        <p className="mt-3 text-muted-foreground">
+          A structured process that turns business needs into meaningful learning architecture.
+        </p>
+      </div>
+
+      {/* Desktop: zigzag with dashed connectors */}
+      <div className="relative mt-14 hidden lg:block max-w-5xl mx-auto">
+        <div className="flex flex-col gap-8">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            const leftSide = i % 2 === 0;
+            return (
+              <motion.div
+                key={step.n}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className={`flex items-center gap-6 ${leftSide ? "" : "flex-row-reverse"}`}
+              >
+                {/* Card with connector line */}
+                <div className="flex-1 relative">
+                  <div className="flex items-center gap-5 rounded-full bg-background border border-primary/15 shadow-soft px-6 py-4 relative z-10">
+                    <div className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/25 grid place-items-center text-primary bg-primary-soft/50">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div className="font-display font-bold text-3xl text-primary leading-none">{step.n}</div>
+                    <p className="text-sm text-foreground/85 leading-snug">{step.text}</p>
+                  </div>
+                  {/* Horizontal dashed line from card to dot */}
+                  <div
+                    aria-hidden
+                    className={`absolute top-1/2 -translate-y-1/2 h-0 border-t-2 border-dashed border-primary/40 z-0 ${leftSide ? "right-0 w-[4.5rem] translate-x-full" : "left-0 w-[4.5rem] -translate-x-full"}`}
+                  />
+                </div>
+
+                {/* Dashed connector dot */}
+                <div className="shrink-0 w-24 flex items-center justify-center relative z-10">
+                  <div className="h-2.5 w-2.5 rounded-full bg-primary" />
+                </div>
+
+                {/* spacer for the other side */}
+                <div className="flex-1" />
+              </motion.div>
+            );
+          })}
+
+          {/* Vertical dashed spine connecting all dots */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-6 bottom-6 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-primary/40"
+          />
+        </div>
+      </div>
+
+      {/* Mobile / tablet: vertical timeline */}
+      <div className="relative mt-12 lg:hidden">
+        <div className="absolute left-8 top-2 bottom-2 w-0.5 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/10" />
+        <div className="space-y-6">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={step.n}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative flex gap-5 items-start"
+              >
+                <div className="relative z-10 shrink-0">
+                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground grid place-items-center shadow-elegant ring-4 ring-background">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 h-7 w-7 rounded-full bg-background border-2 border-primary text-primary grid place-items-center font-display font-bold text-xs">
+                    {step.n}
+                  </div>
+                </div>
+                <div className="card-elegant p-5 flex-1">
+                  <div className="font-display font-semibold text-primary">{step.title}</div>
+                  <p className="mt-1.5 text-sm leading-relaxed text-foreground/80">{step.text}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* value badges */}
+      <div className="relative mt-14 grid sm:grid-cols-3 gap-6 pt-10 border-t border-primary/10">
+        {valueBadges.map(({ icon: BadgeIcon, title, body }) => (
+          <div key={title} className="flex items-start gap-3">
+            <div className="h-10 w-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shrink-0">
+              <BadgeIcon className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="font-semibold text-sm">{title}</div>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
