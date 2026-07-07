@@ -2,6 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import demoIcon from "@/assets/icons/icons-demo.svg";
+
+import practitionerIcon from "@/assets/icons/Practitioner.svg";
+import instructionalDesignIcon from "@/assets/icons/instruction-design.svg";
+import facilitationIcon from "@/assets/icons/facilitation.svg";
+import bfsiIcon from "@/assets/icons/bfsi.svg";
+import aiBrainIcon from "@/assets/icons/ai-brain.svg";
 import hero1 from "@/assets/hero/hero-1.png";
 import hero2 from "@/assets/hero/hero-2.png";
 import hero3 from "@/assets/hero/hero-3.png";
@@ -100,22 +106,27 @@ const differentiators = [
   {
     title: "Practitioner-led Experience",
     body: "We understand real workplace challenges and bring practical insight into every learning solution.",
+    icon: practitionerIcon,
   },
   {
     title: "Instructional Design Depth",
     body: "We structure content for clarity, retention, and meaningful application.",
+    icon: instructionalDesignIcon,
   },
   {
     title: "Facilitation Strength",
     body: "We create engagement, reflection, and conversations that lead to behavioural shift.",
+    icon: facilitationIcon,
   },
   {
     title: "BFSI & Sales Understanding",
     body: "We build domain-relevant learning that connects with business and customer realities.",
+    icon: bfsiIcon,
   },
   {
     title: "AI-ready Mindset",
     body: "We help clients modernise learning while preserving quality, context, and learner relevance.",
+    icon: aiBrainIcon,
   },
 ];
 
@@ -620,9 +631,9 @@ function HomePage() {
 
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
                   <img
-                    src={demoIcon}
-                    alt=""
-                    className="h-11 w-11 object-contain"
+                    src={d.icon}
+                    alt={d.title}
+                    className="h-11 w-11 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
 
@@ -865,7 +876,7 @@ function HomePage() {
             </button>
           </div>
 
-         <div className="mt-2 flex items-center justify-center sm:justify-between px-1 sm:px-6 text-xs text-muted-foreground">
+          <div className="mt-2 flex items-center justify-center sm:justify-between px-1 sm:px-6 text-xs text-muted-foreground">
             <div>
               <span className="font-semibold text-primary">
                 {String(activeTestimonial + 1).padStart(2, "0")}
@@ -901,7 +912,7 @@ function HomePage() {
                 </span>
                 <div className="mt-2 h-0.5 w-10 bg-gold" />
                 <h3 className="display-h2 mt-5">
-                  Have a learning need?<br/>  Let's build the right solution together.
+                  Have a learning need?<br />  Let's build the right solution together.
                 </h3>
                 <p className="mt-4 text-primary-foreground/80 max-w-xl leading-relaxed">
                   From digital learning and facilitated workshops to capability journeys
