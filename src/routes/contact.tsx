@@ -40,7 +40,7 @@ export const Route = createFileRoute("/contact")({
 const SERVICES = [
   "Learning Strategy & Consulting",
   "Instructional Design & Content Development",
-  "AI-Enabled Learning Solutions",
+  "AI-Enabled Learning Services",
   "Training Delivery & Facilitation",
   "Offsites & Experiential Learning",
   "Keynotes & Motivational Sessions",

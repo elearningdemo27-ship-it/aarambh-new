@@ -444,7 +444,7 @@ function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
-                  <Link to="/solutions">
+                  <Link to="/services">
                     {heroSlides[activeHero].primaryCta} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -663,14 +663,14 @@ function HomePage() {
         <div className="container-px mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
-              <span className="eyebrow">Our solutions</span>
+              <span className="eyebrow">Our services</span>
               <h2 className="display-h2 mt-3 max-w-2xl">
                 A full L&amp;D partner across <span className="text-primary">strategy, </span>design and delivery
               </h2>
             </div>
             <Button asChild variant="outline">
-              <Link to="/solutions">
-                See all solutions <ArrowRight className="ml-2 h-4 w-4" />
+              <Link to="/services">
+                See all services <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
@@ -678,7 +678,7 @@ function HomePage() {
             {services.map(({ icon: Icon, image, title, desc }) => (
               <Link
                 key={title}
-                to="/solutions"
+                to="/services"
                 className="card-elegant overflow-hidden group block"
               >
                 <div className="relative h-44 overflow-hidden">
@@ -932,10 +932,10 @@ function HomePage() {
                   </Link>
                 </Button>
                 <Link
-                  to="/solutions"
+                  to="/services"
                   className="inline-flex items-center gap-1 text-sm text-primary-foreground/70 hover:text-primary-foreground transition"
                 >
-                  Or explore our solutions <ChevronRight className="h-4 w-4" />
+                  Or explore our services <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>

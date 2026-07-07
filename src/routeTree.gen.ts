@@ -9,8 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as InsightsResourcesRouteImport } from './routes/insights-resources'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -31,14 +31,14 @@ import { Route as AuthenticatedAdminSuccessStoriesIdRouteImport } from './routes
 import { Route as AuthenticatedAdminBlogsNewRouteImport } from './routes/_authenticated/admin.blogs.new'
 import { Route as AuthenticatedAdminBlogsIdRouteImport } from './routes/_authenticated/admin.blogs.$id'
 
-const SolutionsRoute = SolutionsRouteImport.update({
-  id: '/solutions',
-  path: '/solutions',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsResourcesRoute = InsightsResourcesRouteImport.update({
@@ -149,8 +149,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/insights-resources': typeof InsightsResourcesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/solutions': typeof SolutionsRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/success-stories/$slug': typeof SuccessStoriesSlugRoute
@@ -171,8 +171,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/insights-resources': typeof InsightsResourcesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/solutions': typeof SolutionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/success-stories/$slug': typeof SuccessStoriesSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -194,8 +194,8 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/insights-resources': typeof InsightsResourcesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/solutions': typeof SolutionsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/success-stories/$slug': typeof SuccessStoriesSlugRoute
@@ -218,8 +218,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/insights-resources'
+    | '/services'
     | '/sitemap.xml'
-    | '/solutions'
     | '/admin'
     | '/blog/$slug'
     | '/success-stories/$slug'
@@ -240,8 +240,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/insights-resources'
+    | '/services'
     | '/sitemap.xml'
-    | '/solutions'
     | '/blog/$slug'
     | '/success-stories/$slug'
     | '/blog'
@@ -262,8 +262,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/insights-resources'
+    | '/services'
     | '/sitemap.xml'
-    | '/solutions'
     | '/_authenticated/admin'
     | '/blog/$slug'
     | '/success-stories/$slug'
@@ -286,8 +286,8 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   InsightsResourcesRoute: typeof InsightsResourcesRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  SolutionsRoute: typeof SolutionsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   SuccessStoriesSlugRoute: typeof SuccessStoriesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -296,18 +296,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/solutions': {
-      id: '/solutions'
-      path: '/solutions'
-      fullPath: '/solutions'
-      preLoaderRoute: typeof SolutionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights-resources': {
@@ -492,8 +492,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   InsightsResourcesRoute: InsightsResourcesRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  SolutionsRoute: SolutionsRoute,
   BlogSlugRoute: BlogSlugRoute,
   SuccessStoriesSlugRoute: SuccessStoriesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,

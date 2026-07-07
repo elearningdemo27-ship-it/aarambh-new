@@ -83,7 +83,7 @@ function StoriesListPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Search stories..." value={q} onChange={(e) => setQ(e.target.value)} className="pl-9" />
             </div>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-1 flex-wrap">
               {categories.map((c) => (
                 <button
                   key={c}

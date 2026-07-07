@@ -28,7 +28,7 @@ import heroBg from "@/assets/bg-img1.png";
 import heroBg2 from "@/assets/minimal-bg.png";
 import heroBg3 from "@/assets/minimal-bg2.png";
 
-// Service section photos from src/assets/service/ — same set used on the homepage.
+// Service section photos from src/assets/service/
 import serviceStrategy from "@/assets/service/service-strategy.jpeg";
 import serviceDesign from "@/assets/service/service-design.jpeg";
 import serviceAi from "@/assets/service/service-ai.jpeg";
@@ -36,25 +36,25 @@ import serviceFacilitation from "@/assets/service/service-facilitation.png";
 import serviceOffsite from "@/assets/service/service-offsite.jpeg";
 import serviceKeynote from "@/assets/service/service-keynote.png";
 
-export const Route = createFileRoute("/solutions")({
+export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Solutions — L&D Consulting, Digital Learning, AI Workflows | Aarambh" },
+      { title: "Services — L&D Consulting, Digital Learning, AI Workflows | Aarambh" },
       {
         name: "description",
         content:
-          "Six integrated solutions: learning strategy, instructional design, AI-enabled learning, facilitation, experiential offsites and keynotes.",
+          "Six integrated services: learning strategy, instructional design, AI-enabled learning, facilitation, experiential offsites and keynotes.",
       },
-      { property: "og:title", content: "Solutions — Aarambh" },
+      { property: "og:title", content: "Services — Aarambh" },
       { property: "og:description", content: "Strategy, design, delivery and AI for L&D." },
-      { property: "og:url", content: "/solutions" },
+      { property: "og:url", content: "/services" },
     ],
-    links: [{ rel: "canonical", href: "/solutions" }],
+    links: [{ rel: "canonical", href: "/services" }],
   }),
-  component: SolutionsPage,
+  component: ServicesPage,
 });
 
-// Generic 3-badge value strip reused under "Our Approach" for every solution.
+// Generic 3-badge value strip reused under "Our Approach" for every service.
 const valueBadges = [
   {
     icon: Building2,
@@ -73,7 +73,7 @@ const valueBadges = [
   },
 ] as const;
 
-const solutions = [
+const services = [
   {
     id: "strategy",
     icon: Compass,
@@ -185,7 +185,7 @@ const solutions = [
       { icon: Target, title: "Scenario-Based Practice", desc: "Skill practice using AI prompts for realistic decision-making." },
       { icon: FileText, title: "Role-Based Prompt Libraries", desc: "Curated prompt libraries for employees, managers, and trainers." },
       { icon: Lightbulb, title: "AI Literacy & Content Review", desc: "Programs and support to build AI fluency and content quality." },
-      { icon: Globe2, title: "AI learnign tools", desc: "Learning tools that support decision making, communication and productivity." },
+      { icon: Globe2, title: "AI Learning Tools", desc: "Learning tools that support decision making, communication and productivity." },
     ],
     approachSteps: [
       { title: "Understand the learner role, task requirement, and workplace challenge" },
@@ -324,7 +324,7 @@ const solutions = [
   },
 ] as const;
 
-function SolutionsPage() {
+function ServicesPage() {
   return (
     <SiteLayout>
       {/* PAGE HERO */}
@@ -339,7 +339,7 @@ function SolutionsPage() {
             <em className="text-primary not-italic">delivery</em>.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-            Six integrated solutions, designed to be picked individually or stitched together
+            Six integrated services, designed to be picked individually or stitched together
             into a complete capability journey.
           </p>
         </div>
@@ -351,7 +351,7 @@ function SolutionsPage() {
         style={{ backgroundImage: `url(${heroBg2})` }}
       >
         <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {solutions.map(({ id, icon: Icon, image, title, short }) => (
+          {services.map(({ id, icon: Icon, image, title, short }) => (
             <a key={id} href={`#${id}`} className="card-elegant overflow-hidden group block">
               <div className="relative h-44 overflow-hidden">
                 <img
@@ -361,7 +361,13 @@ function SolutionsPage() {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
-                <div className="absolute bottom-3 left-3 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center shadow-elegant">
+                <div
+                  className="absolute bottom-3 left-3 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-0.5"
+                  style={{
+                    boxShadow:
+                      "0 1px 1px rgba(0,0,0,0.18), 0 6px 12px -2px rgba(0,0,0,0.28), 0 14px 24px -6px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.6)",
+                  }}
+                >
                   <Icon className="h-5 w-5" />
                 </div>
               </div>
@@ -377,9 +383,14 @@ function SolutionsPage() {
         </div>
       </section>
 
-      {/* FULL PER-SOLUTION DETAIL SECTIONS */}
-      {solutions.map((s, idx) => (
-        <section key={s.id} id={s.id} style={{ backgroundImage: `url(${idx % 2 === 0 ? heroBg2 : heroBg3})` }} className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat">
+      {/* FULL PER-SERVICE DETAIL SECTIONS */}
+      {services.map((s, idx) => (
+        <section
+          key={s.id}
+          id={s.id}
+          style={{ backgroundImage: `url(${idx % 2 === 0 ? heroBg2 : heroBg3})` }}
+          className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        >
           <div className="container-px mx-auto max-w-7xl section">
 
             {/* ── Hero split: text + image with overlay card ── */}
@@ -405,7 +416,7 @@ function SolutionsPage() {
                     </Link>
                   </Button>
                   <Button asChild variant="outline">
-                    <a href="#solutions-top">View Learning Solutions</a>
+                    <a href="#services-top">View All Services</a>
                   </Button>
                 </div>
               </motion.div>
@@ -426,7 +437,7 @@ function SolutionsPage() {
                   />
                 </div>
                 {/* Floating focus-areas card */}
-                <div className="absolute -bottom-6 -left-6 max-w-[220px] rounded-2xl bg-background p-5 shadow-elegant-lg border border-border/50 hidden sm:block">
+                <div className="absolute -bottom-6 -left-6 max-w-[220px] rounded-2xl bg-background p-5 shadow-elegant border border-border/50 hidden sm:block">
                   <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
                     <s.icon className="h-4 w-4" />
                     Focus Areas
@@ -494,8 +505,6 @@ function SolutionsPage() {
                     </div>
                   ))}
                 </div>
-
-                
               </div>
 
               {/* value badges */}
@@ -536,6 +545,7 @@ function SolutionsPage() {
                 </Button>
               </div>
             </div>
+
           </div>
         </section>
       ))}

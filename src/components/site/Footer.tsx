@@ -37,7 +37,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             {[
               ["/about", "About"],
-              ["/solutions", "Solutions"],
+             ["/services", "Services"],
               ["/success-stories", "Success Stories"],
               ["/blog", "Blog"],
               ["/contact", "Contact"],
@@ -52,7 +52,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold tracking-wide uppercase text-white">Solutions</h4>
+          <h4 className="text-sm font-semibold tracking-wide uppercase text-white">Services</h4>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
             <li>Learning Strategy &amp; Consulting</li>
             <li>Instructional Design</li>
