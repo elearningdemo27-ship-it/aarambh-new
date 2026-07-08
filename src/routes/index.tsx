@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import demoIcon from "@/assets/icons/icons-demo.svg";
+import target from "@/assets/icons/target.svg";
 
 import practitionerIcon from "@/assets/icons/Practitioner.svg";
 import instructionalDesignIcon from "@/assets/icons/instruction-design.svg";
@@ -651,7 +651,19 @@ function HomePage() {
               </motion.div>
             ))}
           </div>
-
+        
+          <div className="mt-10  bg-primary/5 mx-auto max-w-3xl  bg-background rounded-2xl  border border-primary/20 shadow-[0_4px_24px_rgba(88,28,135,0.10)] px-6 py-3 flex items-center gap-5">
+             <span>
+                <img src={target} alt="Target" className="h-13 w-13 inline-block mr-2" />
+              </span>
+            <div className="w-px self-stretch bg-primary/20 shrink-0" />
+            <span className="font-bold text-sm md:text-base">
+              Our focus is simple:{" "}
+              <span className="text-primary">
+                Better Learning. Stronger Performance. Real Impact.
+              </span>
+            </span>
+          </div>
         </div>
       </section>
 
