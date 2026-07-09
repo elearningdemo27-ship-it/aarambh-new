@@ -415,61 +415,75 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="hero-bg bg-cover bg-center bg-no-repeat relative overflow-hidden">
+      {/* HERO */}
+      <section className="hero-bg relative overflow-hidden h-[620px] md:h-[720px]">
+        {/* Background images */}
         {heroSlides.map((slide, index) => (
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === activeHero ? "opacity-100" : "opacity-0"
               }`}
-            style={{ backgroundImage: `url(${slide.image})`, backgroundPosition: "center top" }}
+            style={{
+              backgroundImage: `url(${slide.image})`,
+              backgroundPosition: "center top",
+            }}
           />
         ))}
 
-        <div className="relative z-10 container-px mx-auto max-w-7xl pt-20 pb-20 md:pt-28 md:pb-24">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeHero}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl"
-            >
-              <span className="eyebrow">{heroSlides[activeHero].eyebrow}</span>
-              <h1 className="display-h1 mt-5 text-foreground">
-                {renderHeroTitle(heroSlides[activeHero].title)}
-              </h1>
-              <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                {heroSlides[activeHero].desc}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg">
-                  <Link to="/services">
-                    {heroSlides[activeHero].primaryCta} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/contact">Discuss Your Learning Need</Link>
-                </Button>
+        <div className="relative z-10 container-px mx-auto max-w-7xl h-full flex flex-col justify-center">
+          {/* Content slides */}
+          <div className="grid">
+            {heroSlides.map((slide, index) => (
+              <div
+                key={index}
+                className={`col-start-1 row-start-1 transition-opacity duration-700 ${index === activeHero
+                    ? "opacity-100 pointer-events-auto"
+                    : "opacity-0 pointer-events-none"
+                  }`}
+              >
+                <div className="max-w-3xl">
+                  <span className="eyebrow">{slide.eyebrow}</span>
+
+                  <h1 className="display-h1 mt-5 text-foreground">
+                    {renderHeroTitle(slide.title)}
+                  </h1>
+
+                  <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                    {slide.desc}
+                  </p>
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button asChild size="lg">
+                      <Link to="/services">
+                        {slide.primaryCta} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+
+                    <Button asChild size="lg" variant="outline">
+                      <Link to="/contact">Discuss Your Learning Need</Link>
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            ))}
+          </div>
 
           {/* Dot navigation */}
-          <div className="relative z-10 mt-10 flex items-center gap-2">
+          <div className="absolute bottom-10 left-0 right-0 container-px mx-auto max-w-7xl flex items-center gap-2">
             {heroSlides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveHero(i)}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-2.5 rounded-full transition-all ${i === activeHero ? "w-8 bg-primary" : "w-2.5 bg-primary/30 hover:bg-primary/50"
+                className={`h-2.5 rounded-full transition-all ${i === activeHero
+                    ? "w-8 bg-primary"
+                    : "w-2.5 bg-primary/30 hover:bg-primary/50"
                   }`}
               />
             ))}
           </div>
         </div>
       </section>
-
       {/* IMPACT NUMBERS */}
       <section
         className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-primary-foreground"
@@ -651,11 +665,11 @@ function HomePage() {
               </motion.div>
             ))}
           </div>
-        
+
           <div className="mt-10  bg-primary/5 mx-auto max-w-3xl  bg-background rounded-2xl  border border-primary/20 shadow-[0_4px_24px_rgba(88,28,135,0.10)] px-6 py-3 flex items-center gap-5">
-             <span>
-                <img src={target} alt="Target" className="h-13 w-13 inline-block mr-2" />
-              </span>
+            <span>
+              <img src={target} alt="Target" className="h-13 w-13 inline-block mr-2" />
+            </span>
             <div className="w-px self-stretch bg-primary/20 shrink-0" />
             <span className="font-bold text-sm md:text-base">
               Our focus is simple:{" "}
