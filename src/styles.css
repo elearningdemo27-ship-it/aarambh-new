@@ -182,3 +182,8 @@
   .prose-aarambh code { background: var(--muted); padding: .15rem .4rem; border-radius: .35rem; font-size: .9em; }
   .prose-aarambh img { border-radius: var(--radius-lg); margin: 1.5rem 0; }
 }
+@media (min-width: 768px) {
+  .story-hero-image {
+    clip-path: ellipse(98% 90% at 100% 50%);
+  }
+}

@@ -5,6 +5,7 @@ import { ArrowLeft, Users, Target, BookOpen, Trophy, Star } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { renderHighlightedText } from "@/utils/formatText";
+import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/success-stories/$slug")({
   component: StoryDetail,
@@ -70,132 +71,152 @@ function StoryDetail() {
 
   return (
     <SiteLayout>
-      <div className="container-px mx-auto max-w-6xl py-12">
-
-        {/* BACK */}
+      <div className="container-px mx-auto max-w-6xl py-10">
+        {/* Back link */}
         <Link
           to="/success-stories"
-          className="inline-flex items-center text-sm text-gray-500 hover:text-gray-800"
+          className="mb-5 inline-flex items-center text-sm text-muted-foreground transition hover:text-primary"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
+          <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Stories
         </Link>
 
-        {/* ================= HERO SECTION ================= */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mt-10">
-
-          {/* LEFT TEXT */}
-          <div>
-            <div className="text-primary text-xs font-semibold uppercase tracking-wider">
-              Our Approach in Action
-            </div>
-
-            <h1 className="text-4xl font-bold mt-4 leading-tight text">
-              {story.title}
-            </h1>
-
-            <p className="mt-5 text-gray-600 leading-relaxed">
-              {story.summary}
-            </p>
-          </div>
-
-          {/* RIGHT IMAGE */}
-          <div className=" image-container rounded-2xl overflow-hidden">
-            <img
-              src={story.featured_image}
-              className="w-full h-[420px] object-cover rounded-2xl"
-            />
-          </div>
-        </div>
-
-        {/* ================= SECTION BLOCKS ================= */}
-        <div className="mt-16 space-y-10">
-
-          {sections.map((s, index) => {
-            const Icon = s.icon;
-
-            return (
-              <div
-                key={index}
-                className="grid md:grid-cols-12 gap-8 items-start bg-white rounded-xl p-6 border border-gray-100"
-              >
-
-                {/* LEFT SIDE (ICON + NUMBER + TITLE) */}
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center ">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-
-                <div>
-                  <div className="text-primary font-bold text-xl">
-                    {s.number}
-                  </div>
-
-                  <div className="text-sm font-semibold text-primary">
-                    {s.title}
-                  </div>
-                </div>
-
-                {/* RIGHT SIDE CONTENT */}
-                <div className="md:col-span-9 text-gray-600 leading-relaxed text-[15px]">
-                  <div className="whitespace-pre-line text-[15px] text-gray-600 leading-relaxed">
-                    {renderHighlightedText(s.content)}
-                  </div>
-                </div>
-
+        {/* Main story card */}
+        <article className="overflow-hidden rounded-[28px]  bg-white shadow-[0_14px_45px_rgba(88,28,135,0.10)]">
+          {/* ================= HERO ================= */}
+          <div className="grid min-h-[430px] md:grid-cols-[1fr_1.05fr]">
+            {/* Left content */}
+            <div className="relative z-10 flex flex-col justify-center px-7 py-10 md:px-12 lg:px-14">
+              <div className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                <span className="h-0.5 w-10 bg-primary" />
+                Our Approach in Action
               </div>
-            );
-          })}
-        </div>
 
-        {/* ================= KEY TAKEAWAY ================= */}
-        <div className="mt-13 bg-indigo-50 border border-indigo-100 rounded-2xl p-5">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-center md:gap-10 gap-6">
+              <h1 className="mt-8 max-w-xl text-3xl font-bold leading-[1.25] text-[#11143b] md:text-4xl lg:text-[42px]">
+                {story.title}
+              </h1>
 
-            {/* LEFT */}
-            <div className="flex items-center gap-3 md:flex-shrink-0">
-              <Star className="w-5 h-5 text-indigo-600" />
-              <h3 className="font-semibold text-gray-900 whitespace-nowrap">
-                Key Takeaway:
-              </h3>
-            </div>
+              <div className="mt-5 flex items-center">
+                <div className="h-px flex-1 bg-primary/20" />
+                <div className="h-2 w-2 shrink-0 rounded-full bg-primary" />
+                <div className="h-px flex-1 bg-primary/20" />
+              </div>
 
-            {/* RIGHT */}
-            <div className="text-gray-700 md:max-w-[70%] leading-relaxed">
-              {story.summary}
-            </div>
-
-          </div>
-        </div>
-
-
-        {/* ================= CTA ================= */}
-        <div className="mt-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl p-5">
-
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-
-            {/* LEFT CONTENT */}
-            <div>
-              <h3 className="text-2xl font-semibold">
-                Explore More Success Stories
-              </h3>
-
-              <p className="mt-2 text-white/80">
-                Discover how we transform learning experiences
+              <p className="mt-5 max-w-xl text-sm leading-6 text-muted-foreground md:text-[15px]">
+                {story.summary}
               </p>
             </div>
 
-            {/* RIGHT BUTTON */}
-            <Link
-              to="/success-stories"
-              className="inline-flex items-center justify-center bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
-            >
-              View All Stories →
-            </Link>
+            {/* Right image */}
+            <div className="story-hero-image relative min-h-[340px] overflow-hidden md:min-h-full">
+              <img
+                src={story.featured_image}
+                alt={story.title}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
 
+              {/* Soft overlay */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10" />
+            </div>
           </div>
 
-        </div>
+          {/* ================= SECTION ROWS ================= */}
+          <div className="space-y-3 px-5 pb-5 pt-3 md:px-7">
+            {sections.map((s, index) => {
+              const Icon = s.icon;
 
+              return (
+                <motion.div
+                  key={s.number}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.06,
+                  }}
+                  className="grid items-stretch overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-[0_5px_18px_rgba(88,28,135,0.05)] md:grid-cols-[88px_190px_1fr]"
+                >
+                  {/* Icon */}
+                  <div className="flex items-center justify-center border-b border-primary/10 bg-primary/[0.025] px-4 py-5 md:border-b-0 md:border-r">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <Icon className="h-7 w-7" />
+                    </div>
+                  </div>
+
+                  {/* Number and title */}
+                  <div className="flex flex-col justify-center border-b border-primary/10 px-5 py-4 md:border-b-0 md:border-r">
+                    <div className="text-2xl font-bold leading-none text-primary">
+                      {s.number}
+                    </div>
+
+                    <h2 className="mt-2 text-base font-bold leading-tight text-primary">
+                      {s.title}
+                    </h2>
+                  </div>
+
+                  {/* Description */}
+                  <div className="flex items-center px-5 py-5 md:px-7">
+                    <div className="text-sm leading-6 text-muted-foreground">
+                      {renderHighlightedText(s.content)}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+
+            {/* ================= KEY TAKEAWAY ================= */}
+            <div className="flex flex-col gap-3 rounded-xl border border-primary/15 bg-primary/10 px-5 py-3 md:flex-row md:items-center">
+              <div className="flex shrink-0 items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white">
+                  <Star className="h-5 w-5 fill-current" />
+                </div>
+
+                <span className="font-semibold text-[#17173d]">
+                  Key Takeaway:
+                </span>
+              </div>
+
+              <p className="text-sm leading-6 text-muted-foreground">
+                {story.summary}
+              </p>
+            </div>
+
+            {/* ================= CTA ================= */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/85 via-primary/90 to-primary/95 px-6 py-5 text-primary-foreground">
+              <div className="absolute -bottom-16 -left-12 h-36 w-36 rounded-full border border-white/15" />
+              <div className="absolute -bottom-20 -left-4 h-36 w-36 rounded-full border border-white/10" />
+              <div className="absolute right-5 top-3 h-20 w-20 rounded-full bg-white/5 blur-xl" />
+
+              <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15">
+                    <BookOpen className="h-7 w-7" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold">
+                      Explore More Success Stories
+                    </h3>
+
+                    <p className="mt-1 text-sm text-white/75">
+                      Discover how thoughtful learning design solved real client
+                      challenges.
+                    </p>
+                  </div>
+                </div>
+
+                <Link
+                  to="/success-stories"
+                  className="inline-flex min-w-[170px] items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-primary shadow-lg transition hover:-translate-y-0.5"
+                >
+                  View All Stories
+                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </SiteLayout>
   );
