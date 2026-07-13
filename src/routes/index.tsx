@@ -216,35 +216,35 @@ const heroSlides = [
   {
     image: hero1,
     eyebrow: "Learning & Development Consulting",
-    title: "Content That **Teaches.** Training That **Transforms.**",
-    desc: "We design impactful digital and ILT learning content and deliver engaging training experiences across BFSI, soft skills, leadership, and outbound learning.",
+    title: "Content That **Teaches.** Training That **Transforms**",
+    desc: "We design impactful digital and ILT content and deliver engaging learning experiences across BFSI, soft skills, leadership, and outbound learning.",
     primaryCta: "Explore Our Services",
   },
   {
     image: hero2,
     eyebrow: "Learning & Development Consulting",
-    title: "From **Learning Design** to **Learning Delivery**",
+    title: "From Learning **Design** to Learning **Delivery**",
     desc: "End-to-end solutions for organisations looking for well-structured content and powerful facilitator-led learning interventions.",
     primaryCta: "Explore Our Solutions",
   },
   {
     image: hero3,
     eyebrow: "Learning & Development Consulting",
-    title: "Designed for **Learners.** Delivered for **Impact.**",
+    title: "Designed for **Learners.** Delivered for **Impact**",
     desc: "Whether it is BFSI domain training, leadership development, soft skills, or outbound programs, we bring content and delivery together with purpose.",
     primaryCta: "Explore Our Solutions",
   },
   {
     image: hero4,
     eyebrow: "Learning & Development Consulting",
-    title: "**Learning Solutions** That Go Beyond Slides",
+    title: "Learning **Solutions** That Go Beyond **Slides**",
     desc: "We transform ideas, concepts, and business needs into engaging content and interactive training experiences.",
     primaryCta: "Explore Our Solutions",
   },
   {
     image: hero5,
     eyebrow: "Learning & Development Consulting",
-    title: "Building **Capability** Through **Meaningful Learning**",
+    title: "Building **Capability** Through Meaningful **Learning**",
     desc: "We create customised digital modules, classroom content, and training programs that help teams learn, apply, and perform better.",
     primaryCta: "Explore Our Solutions",
   },
@@ -343,15 +343,68 @@ function HomePage() {
   const testimonialRef = useRef<HTMLDivElement>(null);
   const partnersRef = useRef<HTMLDivElement>(null);
   const [activeHero, setActiveHero] = useState(0);
+  const HERO_DURATION = 8000;
+
+  const heroTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const heroStartedAtRef = useRef(Date.now());
+  const heroRemainingRef = useRef(HERO_DURATION);
+  const isHeroHoveredRef = useRef(false);
+
+  const startHeroTimer = () => {
+    if (heroTimerRef.current) {
+      clearTimeout(heroTimerRef.current);
+    }
+
+    heroStartedAtRef.current = Date.now();
+
+    heroTimerRef.current = setTimeout(() => {
+      setActiveHero((prev) => (prev + 1) % heroSlides.length);
+      heroRemainingRef.current = HERO_DURATION;
+
+      if (!isHeroHoveredRef.current) {
+        startHeroTimer();
+      }
+    }, heroRemainingRef.current);
+  };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveHero((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    startHeroTimer();
 
-    return () => clearInterval(timer);
+    return () => {
+      if (heroTimerRef.current) {
+        clearTimeout(heroTimerRef.current);
+      }
+    };
   }, []);
 
+  const handleHeroMouseEnter = () => {
+    isHeroHoveredRef.current = true;
+
+    if (heroTimerRef.current) {
+      clearTimeout(heroTimerRef.current);
+    }
+
+    const elapsedTime = Date.now() - heroStartedAtRef.current;
+
+    heroRemainingRef.current = Math.max(
+      heroRemainingRef.current - elapsedTime,
+      0
+    );
+  };
+
+  const handleHeroMouseLeave = () => {
+    isHeroHoveredRef.current = false;
+    startHeroTimer();
+  };
+
+  const handleHeroDotClick = (index: number) => {
+    setActiveHero(index);
+    heroRemainingRef.current = HERO_DURATION;
+
+    if (!isHeroHoveredRef.current) {
+      startHeroTimer();
+    }
+  };
   const scrollTestimonials = (direction: "left" | "right") => {
     const el = testimonialRef.current;
     if (!el) return;
@@ -415,8 +468,11 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      {/* HERO */}
-      <section className="hero-bg relative overflow-hidden h-[620px] md:h-[720px]">
+      <section
+        className="hero-bg relative overflow-hidden h-[620px] md:h-[720px]"
+        onMouseEnter={handleHeroMouseEnter}
+        onMouseLeave={handleHeroMouseLeave}
+      >
         {/* Background images */}
         {heroSlides.map((slide, index) => (
           <div
@@ -442,15 +498,15 @@ function HomePage() {
                   }`}
               >
                 <div className="max-w-3xl">
-                  <span className="eyebrow">{slide.eyebrow}</span>
+                  <span className="eyebrow text-[14px]">{slide.eyebrow}</span>
 
                   <h1 className="display-h1 mt-5 text-foreground">
                     {renderHeroTitle(slide.title)}
                   </h1>
 
-                  <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                    {slide.desc}
-                  </p>
+                  <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+  {slide.desc}
+</p>
 
                   <div className="mt-8 flex flex-wrap gap-3">
                     <Button asChild size="lg">
@@ -469,15 +525,15 @@ function HomePage() {
           </div>
 
           {/* Dot navigation */}
-          <div className="absolute bottom-10 left-0 right-0 container-px mx-auto max-w-7xl flex items-center gap-2">
+          <div className="mt-8 flex items-center gap-2">
             {heroSlides.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setActiveHero(i)}
+                onClick={() => handleHeroDotClick(i)}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-2.5 rounded-full transition-all ${i === activeHero
-                  ? "w-8 bg-primary"
-                  : "w-2.5 bg-primary/30 hover:bg-primary/50"
+                className={`h-2.5 rounded-full transition-all duration-300 ${i === activeHero
+                    ? "w-8 bg-primary"
+                    : "w-2.5 bg-primary/30 hover:bg-primary/50"
                   }`}
               />
             ))}
@@ -757,7 +813,7 @@ function HomePage() {
           </div>
 
           {/* Partner logos */}
-         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {[
               partnerLogo12,
               partnerlogo15,
