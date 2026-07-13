@@ -170,11 +170,11 @@ const services = [
 ] as const;
 
 const impact = [
-  { value: "30+", label: "Founder's years in\nL&D & capability-building" },
-  { value: "15+", label: "Years in digital\nlearning & eLearning" },
-  { value: "300+", label: "Workshops\ndelivered" },
-  { value: "1.3L+", label: "Learner man-hours\nimpacted" },
-  { value: "250+", label: "eLearning hours\ncreated" },
+  { value: "30+", label: "Years of L&D & \nCapability-Building Experience​" },
+  { value: "15+", label: "Years in Digital\nLearning Expertise​" },
+  { value: "300+", label: "Workshops Facilitated \nAcross Industries" },
+  { value: "1.3L+", label: "Learner Hours\nImpacted" },
+  { value: "250+", label: "Hours of Digital Learning\nContent Created​" },
 ];
 
 // Partner/client logos shown in the sliding carousel below the impact numbers.
