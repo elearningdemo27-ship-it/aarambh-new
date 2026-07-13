@@ -124,7 +124,7 @@ const differentiators = [
     icon: bfsiIcon,
   },
   {
-    title: "AI-ready Mindset",
+    title: "AI-Ready Mindset",
     body: "We help clients modernise learning while preserving quality, context, and learner relevance.",
     icon: aiBrainIcon,
   },
@@ -505,8 +505,8 @@ function HomePage() {
                   </h1>
 
                   <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-  {slide.desc}
-</p>
+                    {slide.desc}
+                  </p>
 
                   <div className="mt-8 flex flex-wrap gap-3">
                     <Button asChild size="lg">
@@ -532,8 +532,8 @@ function HomePage() {
                 onClick={() => handleHeroDotClick(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 className={`h-2.5 rounded-full transition-all duration-300 ${i === activeHero
-                    ? "w-8 bg-primary"
-                    : "w-2.5 bg-primary/30 hover:bg-primary/50"
+                  ? "w-8 bg-primary"
+                  : "w-2.5 bg-primary/30 hover:bg-primary/50"
                   }`}
               />
             ))}
@@ -624,14 +624,17 @@ function HomePage() {
 
               <h2 className="display-h2 mt-3 max-w-full">
                 <span>Learning Experiences </span>
-                <span className="text-primary">Shaped Around People,</span>
+                <span className="text-primary">Shaped </span>
+                <span>Around </span>
+                <span className="text-primary">People,</span>
                 <br />
-                <span>Performance, and </span>
+                <span className="text-primary">Performance</span>
+                <span> and </span>
                 <span className="text-primary">Purpose.</span>
               </h2>
               <p className="mt-6 text-muted-foreground leading-6">
                 Aarambh Resource Management Solutions is a Learning &
-                Development consulting practice that helps organisations
+                Development consulting firm that helps organisations
                 build capability through purposeful learning design,
                 digital learning, facilitated interventions and
                 experiential programs.
@@ -682,7 +685,7 @@ function HomePage() {
               <span className="text-primary">Different</span>
             </h1>
 
-            <p className="mt-3 text-lg text-muted-foreground">
+            <p className="mt-3 text-lg text-muted-foreground font-bold">
               Practitioner-led learning. Designed for real workplace impact.
             </p>
           </div>
@@ -750,11 +753,12 @@ function HomePage() {
                 A full L&amp;D partner across <span className="text-primary">strategy, </span>design and delivery
               </h2>
             </div>
-            <Button asChild variant="outline">
+            <Button asChild >
               <Link to="/services">
                 See all services <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
+
           </div>
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map(({ icon: Icon, image, title, desc }) => (
@@ -776,7 +780,7 @@ function HomePage() {
                   </div>
                 </div>
                 <div className="p-7">
-                  <h3 className="text-xl font-display">{title}</h3>
+                  <h3 className="text-xl text-primary font-display">{title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
                   <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-70 group-hover:opacity-100 transition">
                     Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -991,7 +995,7 @@ function HomePage() {
                 </span>
                 <div className="mt-2 h-0.5 w-10 bg-gold" />
                 <h3 className="display-h2 mt-5">
-                  Have a learning need?<br />  Let's build the right solution together.
+                  Have a Learning Need?<br />  Let's Build the Right Solution together.
                 </h3>
                 <p className="mt-4 text-primary-foreground/80 max-w-xl leading-relaxed">
                   From digital learning and facilitated workshops to capability journeys
@@ -1000,22 +1004,28 @@ function HomePage() {
                 </p>
               </div>
 
-              <div className="flex flex-col items-start md:items-end gap-3">
+              <div className="flex flex-col items-start gap-3 md:items-end">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gold text-gold-foreground hover:bg-gold/90 shadow-[0_8px_30px_rgba(234,179,8,0.35)]"
+                  className="min-w-[245px] bg-gold text-gold-foreground hover:bg-gold/90 shadow-[0_8px_30px_rgba(234,179,8,0.35)]"
                 >
                   <Link to="/contact">
-                    Discuss Your Learning Need <ArrowRight className="ml-2 h-4 w-4" />
+                    Discuss Your Learning Need
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-1 text-sm text-primary-foreground/70 hover:text-primary-foreground transition"
+
+                <Button
+                  asChild
+                  size="lg"
+                  className="min-w-[245px] bg-gold text-gold-foreground hover:bg-gold/90 shadow-[0_8px_30px_rgba(234,179,8,0.35)]"
                 >
-                  Or explore our services <ChevronRight className="h-4 w-4" />
-                </Link>
+                  <Link to="/services">
+                    Explore Our Services
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
 
@@ -1024,7 +1034,7 @@ function HomePage() {
                 <Users2 className="h-4 w-4" />
               </div>
               <p className="text-sm text-primary-foreground/80">
-                Purposeful learning. Practical impact.
+                Purposeful Learning. Practical Impact.
               </p>
             </div>
           </div>

@@ -16,15 +16,15 @@ export function Footer() {
           <Logo variant="footer" />
           <p className="mt-5 max-w-md text-sm  text-white/75 leading-relaxed">
             Aarambh Resource Management Solutions — a Learning &amp; Development
-            consulting practice helping organisations build capability through
+            consulting firm helping organisations build capability through
             purposeful learning design, digital learning, facilitation and AI-enabled workflows.
           </p>
           <div className="mt-6 space-y-2 text-sm text-white/75">
-            <a href="mailto:hello@aarambh.in" className="flex items-center gap-2 hover:text-primary">
-              <Mail className="h-4 w-4" /> hello@aarambh.in
+            <a href="mailto:info@aarambhconsulting.in" className="flex items-center gap-2 hover:text-primary">
+              <Mail className="h-4 w-4" /> info@aarambhconsulting.in
             </a>
-            <a href="tel:+910000000000" className="flex items-center gap-2 hover:text-primary">
-              <Phone className="h-4 w-4" /> +91 00000 00000
+            <a href="tel:+919872469708" className="flex items-center gap-2 hover:text-primary">
+              <Phone className="h-4 w-4" /> +91 9872469708
             </a>
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4" /> India
