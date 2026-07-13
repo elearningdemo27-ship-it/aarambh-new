@@ -73,7 +73,7 @@ function StoriesListPage() {
         </div>
       </section>
 
-      <section 
+      <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg2})` }}
       >
@@ -84,20 +84,19 @@ function StoriesListPage() {
               <Input placeholder="Search stories..." value={q} onChange={(e) => setQ(e.target.value)} className="pl-9" />
             </div>
             <div className="flex gap-1 overflow-x-auto scrollbar-none whitespace-nowrap -mx-1 px-1">
-  {categories.map((c) => (
-    <button
-      key={c}
-      onClick={() => setCat(c)}
-      className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border transition ${
-        cat === c
-          ? "bg-primary text-primary-foreground border-primary"
-          : "bg-card text-muted-foreground border-border hover:border-primary/40"
-      }`}
-    >
-      {c}
-    </button>
-  ))}
-</div>
+              {categories.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setCat(c)}
+                  className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border transition ${cat === c
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-card text-muted-foreground border-border hover:border-primary/40"
+                    }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="mt-10">
