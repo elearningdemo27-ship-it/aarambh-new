@@ -132,36 +132,42 @@ const differentiators = [
 
 const services = [
   {
+    id: "strategy",
     icon: Compass,
     image: serviceStrategy,
     title: "Learning Strategy & Consulting",
     desc: "TNA, capability mapping, learning journeys and impact planning.",
   },
   {
+    id: "id",
     icon: BookOpen,
     image: serviceDesign,
     title: "Instructional Design & Content",
     desc: "ILT, eLearning, blended programs, SCORM, microlearning and more.",
   },
   {
+    id: "ai",
     icon: Sparkles,
     image: serviceAi,
     title: "AI-Enabled Learning",
     desc: "AI job aids, prompt libraries, AI literacy and skill practice.",
   },
   {
+    id: "delivery",
     icon: Brain,
     image: serviceFacilitation,
     title: "Training Delivery & Facilitation",
     desc: "BFSI, soft skills, leadership, sales, TTT and managerial programs.",
   },
   {
+    id: "offsites",
     icon: Mountain,
     image: serviceOffsite,
     title: "Offsites & Experiential",
     desc: "Leadership retreats, team alignment, outbound and simulations.",
   },
   {
+    id: "keynotes",
     icon: Mic2,
     image: serviceKeynote,
     title: "Keynotes & Motivational",
@@ -761,33 +767,44 @@ function HomePage() {
 
           </div>
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(({ icon: Icon, image, title, desc }) => (
-              <Link
-                key={title}
-                to="/services"
-                className="card-elegant overflow-hidden group block"
-              >
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={image}
-                    alt={title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
-                  <div className="absolute bottom-3 left-3 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center shadow-elegant">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                </div>
-                <div className="p-7">
-                  <h3 className="text-xl text-primary font-display">{title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                  <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-70 group-hover:opacity-100 transition">
-                    Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
-                  </div>
-                </div>
-              </Link>
-            ))}
+            {services.map(({ id, icon: Icon, image, title, desc }) => (
+  <Link
+    key={id}
+    to="/services"
+    hash={id}
+    className="card-elegant overflow-hidden group block"
+  >
+    <div className="relative h-44 overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
+
+      <div className="absolute bottom-3 left-3 flex h-11 w-11 items-center justify-center rounded-xl bg-background/95 text-primary shadow-elegant backdrop-blur">
+        <Icon className="h-5 w-5" />
+      </div>
+    </div>
+
+    <div className="p-7">
+      <h3 className="text-xl text-primary font-display">
+        {title}
+      </h3>
+
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+        {desc}
+      </p>
+
+      <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-70 transition group-hover:opacity-100">
+        Learn more
+        <ArrowRight className="ml-1.5 h-4 w-4" />
+      </div>
+    </div>
+  </Link>
+))}
           </div>
         </div>
       </section>
