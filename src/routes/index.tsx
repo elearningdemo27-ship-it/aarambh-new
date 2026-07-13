@@ -437,8 +437,8 @@ function HomePage() {
               <div
                 key={index}
                 className={`col-start-1 row-start-1 transition-opacity duration-700 ${index === activeHero
-                    ? "opacity-100 pointer-events-auto"
-                    : "opacity-0 pointer-events-none"
+                  ? "opacity-100 pointer-events-auto"
+                  : "opacity-0 pointer-events-none"
                   }`}
               >
                 <div className="max-w-3xl">
@@ -476,8 +476,8 @@ function HomePage() {
                 onClick={() => setActiveHero(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 className={`h-2.5 rounded-full transition-all ${i === activeHero
-                    ? "w-8 bg-primary"
-                    : "w-2.5 bg-primary/30 hover:bg-primary/50"
+                  ? "w-8 bg-primary"
+                  : "w-2.5 bg-primary/30 hover:bg-primary/50"
                   }`}
               />
             ))}
@@ -651,7 +651,7 @@ function HomePage() {
                   />
                 </div>
 
-                <h3 className="mt-5 text-lg font-bold leading-tight text-foreground">
+                <h3 className="mt-5 flex min-h-[45px] items-center justify-center text-lg font-bold leading-tight text-foreground">
                   {d.title}
                 </h3>
 
@@ -740,8 +740,7 @@ function HomePage() {
         style={{ backgroundImage: `url(${heroBg2})` }}
       >
         <div className="container-px mx-auto max-w-7xl">
-
-          <div className="text-center mb-12">
+          <div className="mb-12 text-center">
             <span className="eyebrow justify-center">
               Organisations We've Partnered With
             </span>
@@ -750,45 +749,25 @@ function HomePage() {
               Trusted Across Industries
             </h2>
 
-            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               We've partnered with organisations across banking, education,
               consulting, manufacturing and healthcare to build capability through
               meaningful learning experiences.
             </p>
           </div>
 
-          {/* BFSI */}
-          <ClientCategory
-            title="BFSI & Insurance"
-            logos={[
+          {/* Partner logos */}
+         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {[
               partnerLogo12,
               partnerlogo15,
               partnerLogo8,
               partnerLogo4,
               partnerLogo10,
-
-
-            ]}
-          />
-
-          {/* Education */}
-          <ClientCategory
-            title="Education & Institutions"
-            logos={[
               partnerlogo17,
               partnerLogo13,
               partnerLogo2,
               partnerlogo16,
-
-
-
-            ]}
-          />
-
-          {/* Corporate */}
-          <ClientCategory
-            title="Corporate & Consulting"
-            logos={[
               partnerLogo1,
               partnerLogo5,
               partnerLogo9,
@@ -796,21 +775,39 @@ function HomePage() {
               partnerLogo6,
               partnerLogo11,
               partnerLogo7,
-              partnerlogo14
-            ]}
-          />
+              partnerlogo14,
+            ].map((logo, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.04,
+                }}
+                className="group mx-auto flex h-24 w-full max-w-[170px] items-center justify-center rounded-xl border border-primary/10 bg-white px-4 py-3 shadow-[0_8px_25px_rgba(88,28,135,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_14px_35px_rgba(88,28,135,0.15)]"              >
+                <img
+                  src={logo}
+                  alt={`Partner organisation ${index + 1}`}
+                  className="max-h-14 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </motion.div>
+            ))}
+          </div>
 
           <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6">
-            <div className="flex items-start justify-center gap-4 max-w-3xl mx-auto">
-              <Quote className="h-6 w-6 text-primary shrink-0 mt-1 scale-x-[-1]" />
-              <p className="text-muted-foreground text-center">
+            <div className="mx-auto flex max-w-3xl items-start justify-center gap-4">
+              <Quote className="mt-1 h-6 w-6 shrink-0 scale-x-[-1] text-primary" />
+
+              <p className="text-center text-muted-foreground font-bold">
                 We value every partnership and the trust our clients place in us.
                 Together, we create learning that drives real workplace performance.
               </p>
-              <Quote className="h-6 w-6 text-primary shrink-0 mt-1" />
+
+              <Quote className="mt-1 h-6 w-6 shrink-0 text-primary" />
             </div>
           </div>
-
         </div>
       </section>
 
