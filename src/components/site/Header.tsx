@@ -9,9 +9,8 @@ const NAV = [
   { to: "/about", label: "About Us" },
   { to: "/services", label: "Services" },
   { to: "/success-stories", label: "Success Stories" },
-  { to: "/insights-resources", label: "Insights & Resources" },
-  { to: "/blog", label: "Blog" },
-  // { to: "/contact", label: "Contact Us" },
+  { to: "/blog", label: "Insights & Resources" },
+  // { to: "/blog", label: "Blog" },
 ] as const;
 
 export function Header() {
