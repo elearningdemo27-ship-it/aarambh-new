@@ -236,7 +236,7 @@ function BlogDetail() {
     async () => {
       if (
         typeof window ===
-          "undefined" ||
+        "undefined" ||
         !navigator.clipboard
       ) {
         return;
@@ -400,84 +400,84 @@ function BlogDetail() {
               <div className="min-w-0 px-6 py-8 md:px-10 md:py-12 lg:px-12">
                 <div className="prose-aarambh max-w-none">
                   <ReactMarkdown
-  components={{
-    h2: ({ children, ...props }) => {
-      const text = String(children);
+                    components={{
+                      h2: ({ children, ...props }) => {
+                        const text = String(children);
 
-      return (
-        <h2
-          id={createHeadingId(text)}
-          className="scroll-mt-28"
-          {...props}
-        >
-          {children}
-        </h2>
-      );
-    },
+                        return (
+                          <h2
+                            id={createHeadingId(text)}
+                            className="scroll-mt-28"
+                            {...props}
+                          >
+                            {children}
+                          </h2>
+                        );
+                      },
 
-    h3: ({ children, ...props }) => {
-      const text = String(children);
+                      h3: ({ children, ...props }) => {
+                        const text = String(children);
 
-      return (
-        <h3
-          id={createHeadingId(text)}
-          className="scroll-mt-28"
-          {...props}
-        >
-          {children}
-        </h3>
-      );
-    },
+                        return (
+                          <h3
+                            id={createHeadingId(text)}
+                            className="scroll-mt-28"
+                            {...props}
+                          >
+                            {children}
+                          </h3>
+                        );
+                      },
 
-    strong: ({ children }) => (
-      <strong className="font-semibold text-primary">
-        {children}
-      </strong>
-    ),
+                      strong: ({ children }) => (
+                        <strong className="font-semibold text-primary">
+                          {children}
+                        </strong>
+                      ),
 
-    blockquote: ({ children }) => (
-      <blockquote className="my-8 rounded-2xl border-l-4 border-primary bg-primary/5 px-6 py-5 text-base italic leading-7 text-foreground">
-        {children}
-      </blockquote>
-    ),
+                      blockquote: ({ children }) => (
+                        <blockquote className="my-8 rounded-2xl border-l-4 border-primary bg-primary/5 px-6 py-5 text-base italic leading-7 text-foreground">
+                          {children}
+                        </blockquote>
+                      ),
 
-    ul: ({ children }) => (
-      <ul className="my-6 space-y-3">
-        {children}
-      </ul>
-    ),
+                      ul: ({ children }) => (
+                        <ul className="my-6 space-y-3">
+                          {children}
+                        </ul>
+                      ),
 
-    li: ({ children }) => (
-      <li className="flex items-start gap-3">
-        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
-        <span>{children}</span>
-      </li>
-    ),
+                      li: ({ children }) => (
+                        <li className="flex items-start gap-3">
+                          <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                          <span>{children}</span>
+                        </li>
+                      ),
 
-    pre: ({ children }) => (
-      <div className="my-8 rounded-2xl border border-primary/15 bg-primary/5 p-6 shadow-sm">
-        <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
-          Key takeaway
-        </div>
+                      pre: ({ children }) => (
+                        <div className="my-8 rounded-2xl border border-primary/15 bg-primary/5 p-6 shadow-sm">
+                          <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+                            Key takeaway
+                          </div>
 
-        <pre className="whitespace-pre-wrap font-sans text-sm leading-7 text-foreground">
-          {children}
-        </pre>
-      </div>
-    ),
+                          <pre className="whitespace-pre-wrap font-sans text-sm leading-7 text-foreground">
+                            {children}
+                          </pre>
+                        </div>
+                      ),
 
-    img: ({ src, alt }) => (
-      <img
-        src={src}
-        alt={alt ?? ""}
-        className="my-8 w-full rounded-2xl border border-border/50 object-cover shadow-sm"
-        loading="lazy"
-      />
-    ),
-  }}
->
-  {post.content ?? ""}
-</ReactMarkdown>
+                      img: ({ src, alt }) => (
+                        <img
+                          src={src}
+                          alt={alt ?? ""}
+                          className="my-8 w-full rounded-2xl border border-border/50 object-cover shadow-sm"
+                          loading="lazy"
+                        />
+                      ),
+                    }}
+                  >
+                    {post.content ?? ""}
+                  </ReactMarkdown>
                 </div>
 
                 {/* Tags and Share */}
@@ -487,31 +487,31 @@ function BlogDetail() {
                       {(post.tags ?? [])
                         .length >
                         0 && (
-                        <>
-                          <span className="mr-1 text-sm font-semibold">
-                            Tags:
-                          </span>
+                          <>
+                            <span className="mr-1 text-sm font-semibold">
+                              Tags:
+                            </span>
 
-                          {(
-                            post.tags ?? []
-                          ).map(
-                            (
-                              currentTag: string,
-                            ) => (
-                              <span
-                                key={
-                                  currentTag
-                                }
-                                className="rounded-full border border-primary/10 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary"
-                              >
-                                {
-                                  currentTag
-                                }
-                              </span>
-                            ),
-                          )}
-                        </>
-                      )}
+                            {(
+                              post.tags ?? []
+                            ).map(
+                              (
+                                currentTag: string,
+                              ) => (
+                                <span
+                                  key={
+                                    currentTag
+                                  }
+                                  className="rounded-full border border-primary/10 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary"
+                                >
+                                  {
+                                    currentTag
+                                  }
+                                </span>
+                              ),
+                            )}
+                          </>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -578,47 +578,47 @@ function BlogDetail() {
                 <div className="space-y-6 lg:sticky lg:top-24">
                   {tableOfContents.length >
                     0 && (
-                    <div className="rounded-2xl border border-border/60 bg-background p-6">
-                      <h2 className="text-lg font-semibold">
-                        On this page
-                      </h2>
+                      <div className="rounded-2xl border border-border/60 bg-background p-6">
+                        <h2 className="text-lg font-semibold">
+                          On this page
+                        </h2>
 
-                      <div className="mt-3 h-0.5 w-8 bg-primary" />
+                        <div className="mt-3 h-0.5 w-8 bg-primary" />
 
-                      <nav className="mt-6">
-                        <ul className="space-y-4">
-                          {tableOfContents.map(
-                            (item) => (
-                              <li
-                                key={
-                                  item.id
-                                }
-                                className={
-                                  item.level ===
-                                  3
-                                    ? "pl-4"
-                                    : ""
-                                }
-                              >
-                                <a
-                                  href={`#${item.id}`}
-                                  className="group flex items-start gap-3 text-sm leading-5 text-muted-foreground transition-colors hover:text-primary"
+                        <nav className="mt-6">
+                          <ul className="space-y-4">
+                            {tableOfContents.map(
+                              (item) => (
+                                <li
+                                  key={
+                                    item.id
+                                  }
+                                  className={
+                                    item.level ===
+                                      3
+                                      ? "pl-4"
+                                      : ""
+                                  }
                                 >
-                                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70 transition group-hover:bg-primary" />
+                                  <a
+                                    href={`#${item.id}`}
+                                    className="group flex items-start gap-3 text-sm leading-5 text-muted-foreground transition-colors hover:text-primary"
+                                  >
+                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70 transition group-hover:bg-primary" />
 
-                                  <span>
-                                    {
-                                      item.text
-                                    }
-                                  </span>
-                                </a>
-                              </li>
-                            ),
-                          )}
-                        </ul>
-                      </nav>
-                    </div>
-                  )}
+                                    <span>
+                                      {
+                                        item.text
+                                      }
+                                    </span>
+                                  </a>
+                                </li>
+                              ),
+                            )}
+                          </ul>
+                        </nav>
+                      </div>
+                    )}
 
                   <div className="rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/10 via-primary/5 to-background p-6">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-background text-primary shadow-sm">
@@ -719,7 +719,7 @@ function BlogDetail() {
                     const relatedReadingTime =
                       calculateReadingTime(
                         relatedPost.content ??
-                          "",
+                        "",
                       );
 
                     return (
