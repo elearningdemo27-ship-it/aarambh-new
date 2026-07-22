@@ -56,25 +56,6 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-// Generic 3-badge value strip reused under "Our Approach" for every service.
-const valueBadges = [
-  {
-    icon: Building2,
-    title: "Business-Aligned",
-    body: "Keeps learning anchored to organisational goals and performance outcomes.",
-  },
-  {
-    icon: Users2,
-    title: "Learner-Centred",
-    body: "Builds journeys around audience context, motivation, and practical relevance.",
-  },
-  {
-    icon: Target,
-    title: "Outcome-Focused",
-    body: "Ensures learning is structured for application, recall, and measurable impact.",
-  },
-] as const;
-
 type ApproachStep = {
   n: string;
   icon: LucideIcon;
@@ -464,14 +445,14 @@ function ServicesPage() {
             </div>
 
             {/* ── What We Help You Build ── */}
-            <div className="mt-24 grid items-stretch gap-10 lg:grid-cols-2">
-              {/* Left side */}
-              <div className="flex h-full flex-col">
-                <h3 className="display-h2">
-                  What We Help You Build
-                </h3>
+            <div className="mt-24">
+              <div>
+                <div className="text-center">
+                  <h3 className="display-h2">What We Help You Build</h3>
+                  <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-primary" />
+                </div>
 
-                <div className="mt-8 flex flex-1 flex-col justify-between gap-5">
+                <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {s.buildItems.map(({ icon: ItemIcon, title, desc }, i) => (
                     <motion.div
                       key={title}
@@ -482,19 +463,17 @@ function ServicesPage() {
                         duration: 0.4,
                         delay: i * 0.05,
                       }}
-                      className="card-elegant p-5"
+                      className="rounded-xl border border-border/70 bg-background/90 p-5 shadow-elegant"
                     >
-                      <div className="flex gap-4">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <ItemIcon className="h-5 w-5" />
+                      <div className="flex h-full items-center gap-4">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                          <ItemIcon className="h-8 w-8 stroke-[1.75]" />
                         </div>
 
-                        <div>
-                          <h4 className="font-semibold">
-                            {title}
-                          </h4>
+                        <div className="min-w-0 flex-1 border-l border-primary/15 pl-4">
+                          <h4 className="font-semibold leading-tight">{title}</h4>
 
-                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             {desc}
                           </p>
                         </div>
@@ -504,8 +483,9 @@ function ServicesPage() {
                 </div>
               </div>
 
-              {/* Right side */}
-              <ApproachJourney steps={s.approachSteps} />
+              <div className="mt-5">
+                <ApproachJourney steps={s.approachSteps} />
+              </div>
             </div>
           </div>
 
@@ -550,98 +530,68 @@ function ServicesPage() {
 
 function ApproachJourney({ steps }: { steps: readonly ApproachStep[] }) {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary-soft/60 via-background to-primary-soft/40 p-5 md:p-6">      {/* Decorative dots */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.12]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, var(--color-primary, #5b2c81) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
-        }}
-      />
-
-      <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute -bottom-16 -left-12 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
-
-      {/* Heading */}
-      <div className="relative text-center">
-        <h3 className="text-2xl font-display font-bold text-primary md:text-3xl">
-          Our Approach
-        </h3>
-
-        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-          A structured process that turns business needs into meaningful
-          learning architecture.
-        </p>
+    <div className="relative overflow-hidden rounded-xl border border-primary/15 bg-gradient-to-r from-primary/5 via-background to-primary/5 px-5 pb-6 pt-3 shadow-sm md:px-8">
+      <div className="relative flex items-center justify-center gap-3">
+        <span className="h-px w-10 bg-primary/20" />
+        <h3 className="text-lg font-bold text-primary">Our Approach</h3>
+        <span className="h-px w-10 bg-primary/20" />
       </div>
 
-      {/* Compact vertical journey */}
-      <div className="relative mt-8">
-        {/* Vertical connector */}
-        <div className="absolute bottom-4 left-5 top-4 w-px border-l-2 border-dashed border-primary/30" />
-
-        <div className="flex flex-1 flex-col justify-between gap-4">
+      {/* Desktop horizontal process */}
+      <div className="relative mt-4 hidden md:block">
+        <div className="absolute left-[5%] right-[5%] top-9 border-t border-dashed border-primary/50" />
+        <div
+          className="relative grid"
+          style={{ gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }}
+        >
           {steps.map((step, i) => {
             const Icon = step.icon;
 
             return (
               <motion.div
                 key={step.n}
-                initial={{ opacity: 0, x: 12 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.35,
-                  delay: i * 0.06,
-                }}
-                className="relative flex items-start gap-3"
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+                className="relative flex min-w-0 flex-col items-center px-1 text-center"
               >
-                {/* Icon */}
-                <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-primary/20 bg-background text-primary shadow-sm">
-                  <Icon className="h-4 w-4" />
-
-                  <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                    {step.n}
-                  </span>
+                <div className="relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-primary/15 bg-background text-primary shadow-sm">
+                  <Icon className="h-7 w-7 stroke-[1.75]" />
                 </div>
-
-                {/* Step card */}
-                <div className="flex-1 rounded-xl border border-primary/10 bg-background/90 px-4 py-3 shadow-sm backdrop-blur">
-                  <h4 className="text-sm font-semibold text-primary">
-                    {step.title}
-                  </h4>
-
-                  <p className="mt-1 text-xs leading-5 text-foreground/75 md:text-sm">
-                    {step.text}
-                  </p>
-                </div>
+                <h4 className="mt-3 text-xs font-semibold leading-tight text-foreground lg:text-sm">
+                  {step.title}
+                </h4>
               </motion.div>
             );
           })}
         </div>
       </div>
 
-      {/* Value badges */}
-      <div className="relative mt-8 grid gap-3 border-t border-primary/10 pt-6">
-        {valueBadges.map(({ icon: BadgeIcon, title, body }) => (
-          <div
-            key={title}
-            className="flex items-start gap-3 rounded-xl bg-background/70 p-3"
-          >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <BadgeIcon className="h-4 w-4" />
-            </div>
-
-            <div>
-              <div className="text-sm font-semibold">{title}</div>
-
-              <p className="mt-0.5 text-xs leading-5 text-muted-foreground">
-                {body}
-              </p>
-            </div>
-          </div>
-        ))}
+      {/* Mobile vertical process */}
+      <div className="relative mt-5 space-y-3 md:hidden">
+        <div className="absolute bottom-5 left-6 top-5 border-l border-dashed border-primary/50" />
+        {steps.map((step, i) => {
+          const Icon = step.icon;
+          return (
+            <motion.div
+              key={step.n}
+              initial={{ opacity: 0, x: 10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: i * 0.04 }}
+              className="relative flex items-center gap-4"
+            >
+              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary/15 bg-background text-primary shadow-sm">
+                <Icon className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold">{step.title}</h4>
+                <p className="mt-0.5 text-xs leading-5 text-muted-foreground">{step.text}</p>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

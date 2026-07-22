@@ -64,7 +64,8 @@ function StoriesListPage() {
         <div className="container-px mx-auto max-w-7xl py-20 md:py-24">
           <span className="eyebrow">Success Stories</span>
           <h1 className="display-h1 mt-5 max-w-3xl">
-            Capability built. Outcomes delivered.
+            Capability <span className="text-primary">Built</span>. Outcomes{" "}
+            <span className="text-primary">Delivered</span>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
             A look at how Aarambh has partnered with organisations to translate learning

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import target from "@/assets/icons/target.svg";
 
@@ -186,32 +186,50 @@ const impact = [
 // Partner/client logos shown in the sliding carousel below the impact numbers.
 
 const testimonials = [
+  
   {
+    tag: "E-Learning Development",
+    quote:
+      "Captain Shika brings deep subject matter expertise in the area of BFSI, leadership and soft skills. She couples it with knowledge of instructional design and develops e-learning products aesthetically, visually pleasing and interactive in engagement. She is extremely prompt in her commitments, is accommodative and actively engages with clients pleasingly. It is always a joy to work with Captain Shikha. I have personally worked with Shikha in developing e-learning products and will vouch for her immense expertise in this area.",
+    name: "Dr. Agna Fernandez Bennis",
+    role: "Winner 1000 Women Leaders Program | Author | Softskill & Leadership Trainer | Content Head | Global Reporting Initiative - GRI",
+    org: "",
+    image: "", // Add image URL here
+  },
+  {
+    tag: "E-Learning Projects",
+    quote:
+      "We have worked with Aarambh Resource Management Solutions on multiple eLearning projects and have found them to be a reliable and value-driven partner. Their strength lies in understanding learning objectives clearly and converting them into engaging, structured and learner-centric digital content. From storyboards and scenario-based learning to assessments and interactive modules, their work reflects strong instructional design capability and attention to detail. They can simplify complex content without losing its essence, making the learning experience both effective and engaging. We would be happy to recommend Aarambh Resource Management Solutions for eLearning content design and development.",
+    name: "Parshant Vashisth",
+    role: "Deputy Vice President - Learning and Development",
+    org: "Niva Bupa Health Insurance Company Limited",
+    image: "", // Add image URL here
+  },
+  {
+    tag: "Learning Solutions",
+    quote:
+      "We have had the opportunity to work with Aarambh Resource Management Solutions across multiple learning requirements, including eLearning content development, ILT material design, and practical job aids. What stood out was their ability to understand the business context, simplify complex content, and convert it into engaging, learner-friendly solutions. Their eLearning modules were well-structured and visually engaging, the ILT material was practical and facilitation-ready, and the job aids were designed to support quick application at the workplace. The team brought strong instructional design expertise, responsiveness, and attention to detail throughout the engagement. Their work helped us create learning solutions that were not only professional in quality but also relevant, usable, and aligned to our organisational needs. We value their contribution and would be happy to recommend Aarambh Resource Management Solutions for organisations looking for high-quality learning content, training design, and performance support solutions.",
+    name: "Dr. Anshuman Kamthan",
+    role: "National Training Head",
+    org: "Birla Paints - GRASIM (Aditya Birla Group)",
+    image: "", // Add image URL here
+  },
+  {
+    tag: "Training Content",
+    quote:
+      "I had an opportunity to work with Shikha – the founder of Aarambh Resource Management Solutions as a colleague and later when she provided her services as an outsourced training content provider. In both instances, Shikha proved to be a valuable partner. She always brought a fresh perspective to the issue at hand and was never shy of sharing it forcefully. A creative approach, expertise in instructional design and a high awareness of the latest technologies- Shikha brings an enviable combination of all these to the table. Having been a trainer herself with a stint in the Indian Army to boot, I would recommend her highly to any prospective client.",
+    name: "Vinay Kumar Singh",
+    role: "Consultant, Academic, Economist",
+    org: "Ex-Head- Self-Regulation and Compliance, Microfinance Industry Network",
+    image: "", // Add image URL here
+  },{
     tag: "Behavioural Skills Workshop",
     quote:
-      "ARMS delivered a highly impactful 3-day Behavioural Skills Workshop for our managerial cadre. The program was engaging, practical, and deeply relevant to the workplace realities of our managers. The facilitation brought together strong energy, meaningful reflection, and actionable learning. ARMS demonstrated an excellent understanding of behavioural development and created a learning experience that was both powerful and memorable. We value the professionalism and quality they brought in, and would gladly recommend them for behavioural and leadership development programs.",
+      "ARMS delivered a highly impactful 3-day Behavioural Skills Workshop for our managerial cadre. The program was engaging, practical, and deeply relevant to the workplace realities of our managers. The facilitation brought together strong energy, meaningful reflection, and actionable learning. ARMS demonstrated excellent understanding of behavioural development and created a learning experience that was both powerful and memorable. We value the professionalism and quality brought in by ARMS and would gladly recommend them for behavioural and leadership development programs.",
     name: "Amitabh",
     role: "Managing Director",
     org: "Creative Museum Designer, Kolkata",
-    image: "", // add image here later
-  },
-  {
-    tag: "Leadership Development",
-    quote:
-      "The facilitation brought together strong energy, meaningful reflection, and actionable learning. The workshop experience was powerful and memorable for our team.",
-    name: "Client Name",
-    role: "Head of HR",
-    org: "Manufacturing Organisation",
-    image: "",
-  },
-  {
-    tag: "Learning Design",
-    quote:
-      "Aarambh helped us convert complex content into a clean and learner-friendly experience. Their approach was structured, practical, and aligned to our business needs.",
-    name: "Client Name",
-    role: "L&D Lead",
-    org: "BFSI Organisation",
-    image: "",
+    image: "", // Add image URL here
   },
 ];
 
@@ -346,6 +364,7 @@ function ClientCategory({
 
 function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [activeTestimonialHeight, setActiveTestimonialHeight] = useState(0);
   const testimonialRef = useRef<HTMLDivElement>(null);
   const partnersRef = useRef<HTMLDivElement>(null);
   const [activeHero, setActiveHero] = useState(0);
@@ -459,6 +478,23 @@ function HomePage() {
 
     setActiveTestimonial(closestIndex);
   };
+
+  useLayoutEffect(() => {
+    const track = testimonialRef.current;
+    const activeCard = track?.querySelectorAll<HTMLElement>("[data-carousel-card]")[
+      activeTestimonial
+    ];
+
+    if (!activeCard) return;
+
+    const updateHeight = () => setActiveTestimonialHeight(activeCard.offsetHeight);
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(activeCard);
+
+    return () => resizeObserver.disconnect();
+  }, [activeTestimonial]);
   // Slides the partner-logo row by roughly one "page" of logos at a time,
   // but still allows free dragging/scrolling by the user in between clicks.
   const scrollPartners = (direction: "left" | "right") => {
@@ -663,7 +699,7 @@ function HomePage() {
 
               <Button asChild className="mt-6">
                 <Link to="/about">
-                  Learn More About Us
+                  Learn More About Our Founders
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -888,111 +924,115 @@ function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section
-        className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
+     {/* TESTIMONIALS */}
+<section
+  className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: `url(${heroBg})` }}
+>
+  <div className="container-px mx-auto max-w-7xl ">
+    <div className="text-center">
+      <span className="eyebrow justify-center">Testimonials</span>
+      <h2 className="display-h2 mt-3">What Our Clients Say</h2>
+      <div className="mx-auto mt-4 h-0.5 w-16 bg-primary" />
+      <p className="mt-4 text-sm text-muted-foreground">
+        Real feedback from organisations we've worked with.
+      </p>
+    </div>
+
+    <div className="relative mt-10 px-0 md:px-14">
+      <button
+        onClick={() => scrollTestimonials("left")}
+        style={{ top: activeTestimonialHeight ? activeTestimonialHeight / 2 : "50%" }}
+        className="absolute left-0 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"
+        aria-label="Previous testimonial"
       >
-        <div className="container-px mx-auto max-w-7xl ">
-          <div className="text-center">
-            <span className="eyebrow justify-center">Testimonials</span>
-            <h2 className="display-h2 mt-3">What Our Clients Say</h2>
-            <div className="mx-auto mt-4 h-0.5 w-16 bg-primary" />
-            <p className="mt-4 text-sm text-muted-foreground">
-              Real feedback from organisations we've worked with.
-            </p>
-          </div>
+        <ChevronLeft className="h-5 w-5" />
+      </button>
 
-          <div className="relative mt-10 px-0 md:px-14">
-            <button
-              onClick={() => scrollTestimonials("left")}
-              className="absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
+      <div
+        ref={testimonialRef}
+        onScroll={handleTestimonialScroll}
+        className="carousel-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 items-start"
+      >
+        {testimonials.map((t, index) => (
+          <div
+            key={`${t.name}-${index}`}
+            data-carousel-card
+            className="relative shrink-0 snap-center w-full rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-5 sm:p-6 md:p-8 shadow-elegant"
+          >
+            <div className="grid gap-6 md:grid-cols-[1.35fr_0.65fr] md:items-start md:gap-8">
+              <div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Quote className="h-8 w-8 md:h-10 md:w-10 fill-primary text-primary shrink-0" />
 
-            <div
-              ref={testimonialRef}
-              onScroll={handleTestimonialScroll}
-              className="carousel-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6"
-            >
-              {testimonials.map((t, index) => (
-                <div
-                  key={`${t.name}-${index}`}
-                  data-carousel-card
-                  className="card-elegant relative shrink-0 snap-center w-full p-5 sm:p-6 md:p-9"
-                >
-                  <div className="grid gap-6 md:gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-center">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <Quote className="h-8 w-8 md:h-10 md:w-10 fill-primary text-primary shrink-0" />
-
-                        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] sm:text-xs font-semibold text-primary">
-                          <Users2 className="h-3.5 w-3.5 shrink-0" />
-                          <span>{t.tag}</span>
-                        </div>
-                      </div>
-
-                      <p className="mt-5 max-w-2xl text-sm md:text-base leading-7 md:leading-relaxed text-foreground/90">
-                        {t.quote}
-                      </p>
-
-                      <div className="mt-6">
-                        <div className="text-lg md:text-xl font-semibold text-primary">
-                          {t.name}
-                        </div>
-                        <div className="mt-1 text-sm text-muted-foreground">
-                          {t.role}, {t.org}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-center md:justify-end">
-                      {t.image ? (
-                        <img
-                          src={t.image}
-                          alt={t.name}
-                          className="h-36 w-36 sm:h-44 sm:w-44 md:h-52 md:w-52 rounded-3xl object-cover shadow-elegant"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="flex h-36 w-36 sm:h-44 sm:w-44 md:h-52 md:w-52 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-elegant">
-                          <Users2 className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20" />
-                        </div>
-                      )}
-                    </div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] sm:text-xs font-semibold text-primary whitespace-nowrap">
+                    <Users2 className="h-3.5 w-3.5 shrink-0" />
+                    <span>{t.tag}</span>
                   </div>
                 </div>
-              ))}
-            </div>
 
-            <button
-              onClick={() => scrollTestimonials("right")}
-              className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+                <p className="mt-5 max-w-2xl text-sm md:text-base leading-7 md:leading-relaxed text-foreground/90">
+                  {t.quote}
+                </p>
+
+                <div className="mt-6">
+                  <div className="text-lg md:text-xl font-semibold text-primary">
+                    {t.name}
+                  </div>
+                  <div className="mt-1 text-sm text-muted-foreground">
+                    {t.role}{t.org && `, ${t.org}`}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center md:justify-end">
+                {t.image ? (
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="h-36 w-36 sm:h-44 sm:w-44 md:h-52 md:w-52 rounded-3xl object-cover shadow-elegant"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className="flex h-36 w-36 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-elegant sm:h-44 sm:w-44 md:h-52 md:w-52"
+                    aria-label={`No profile image available for ${t.name}`}
+                  >
+                    <Users2 className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20" />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
+        ))}
+      </div>
 
-          <div className="mt-2 flex items-center justify-center sm:justify-between px-1 sm:px-6 text-xs text-muted-foreground">
-            <div>
-              <span className="font-semibold text-primary">
-                {String(activeTestimonial + 1).padStart(2, "0")}
-              </span>
-              <span className="mx-1">/</span>
-              <span>{String(testimonials.length).padStart(2, "0")}</span>
-            </div>
+      <button
+        onClick={() => scrollTestimonials("right")}
+        style={{ top: activeTestimonialHeight ? activeTestimonialHeight / 2 : "50%" }}
+        className="absolute right-0 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-border bg-background shadow-elegant md:flex items-center justify-center hover:bg-muted transition"
+        aria-label="Next testimonial"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+    </div>
 
-            <div className="hidden items-center gap-2 sm:flex">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span>Swipe to explore more testimonials</span>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="mt-2 flex items-center justify-center sm:justify-between px-1 sm:px-6 text-xs text-muted-foreground">
+      <div>
+        <span className="font-semibold text-primary">
+          {String(activeTestimonial + 1).padStart(2, "0")}
+        </span>
+        <span className="mx-1">/</span>
+        <span>{String(testimonials.length).padStart(2, "0")}</span>
+      </div>
 
+      <div className="hidden items-center gap-2 sm:flex">
+        <Sparkles className="h-4 w-4 text-primary" />
+        <span>Swipe to explore more testimonials</span>
+      </div>
+    </div>
+  </div>
+</section>
       {/* CTA */}
       <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
