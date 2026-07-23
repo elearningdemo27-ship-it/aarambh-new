@@ -66,26 +66,7 @@ const founders = [
 function AboutPage() {
   return (
     <SiteLayout>
-      <section
-        className="hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="container-px relative mx-auto max-w-7xl py-20 md:py-28 grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-8">
-            <span className="eyebrow">About Our Founders</span>
-            <h1 className="display-h1 mt-5">
-              Six decades of experience shaping{" "}
-              <em className="text-primary not-italic">learning and performance</em>
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-3xl leading-relaxed">
-              Meet the founders of Aarambh Resource Management Solutions—practitioners who
-              bring deep experience in leadership, sales, facilitation, learning design, and
-              workplace capability building.
-            </p>
-          </div>
-        </div>
-      </section>
-
+     
       <section
         className="section hero-bg relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg2})` }}
